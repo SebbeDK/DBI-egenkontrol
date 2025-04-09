@@ -6,17 +6,14 @@ import FileCardComponent from '../components/FileCardComponents.vue'
 const cards = [
    {
     title: 'Bilskade',
-    description: 'Opdateret den:',
     date: '20/02/2025'
   },
   {
     title: 'ABA Månedskontrol',
-    description: 'Gemt den:',
     date: '10/02/2025'
   },
   {
     title: 'AIA',
-    description: 'Gemt den:',
     date: '10/02/2025'
   },
 ]
@@ -51,7 +48,6 @@ const cards = [
                 v-for="card in cards"
                 :key="card.title"
                 :title="card.title"
-                :description="card.description"
                 :date="card.date"
             />
         </div> 
