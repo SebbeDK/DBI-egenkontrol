@@ -9,10 +9,16 @@
       <h1>DBI Egenkontrol</h1>
     </div>
     <div class="sidebar__content">
-      <button class="sidebar__btn-profile"></button>
-      <button class="sidebar__btn-settings"></button>
+      <button class="sidebar__btn-profile">
+        <font-awesome-icon :icon="['fas', 'user']" />
+      </button>
+      <button class="sidebar__btn-settings">
+        <font-awesome-icon :icon="['fas', 'gear']" />
+      </button>
       <div class="search">
-        <button></button>
+        <button class="sidebar__search">
+          <font-awesome-icon :icon="['fas', 'magnifying-glass']" />
+        </button>
         <input type="text" placeholder="Søg i skemaer">
       </div>
       <div class="templates">
@@ -70,6 +76,12 @@
 
 .sidebar__content{
   padding: 1rem;
+}
+
+.sidebar__search svg{
+ color: white;
+ font-size: 20px;
+ margin-top: 0.2rem;
 }
 
 .search{
@@ -192,5 +204,16 @@ text-align: center;
   margin-top: 0.1rem;
   margin-right: 0.5rem;
   margin-bottom: 1.5rem;
+}
+.sidebar__btn-profile svg{
+  color: white;
+  font-size: 23px;
+  margin-top: 0.2rem;
+}
+
+.sidebar__btn-settings svg{
+  color: white;
+  font-size: 23px;
+  margin-top: 0.2rem;
 }
 </style>

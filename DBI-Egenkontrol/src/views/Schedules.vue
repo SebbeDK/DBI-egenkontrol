@@ -5,15 +5,15 @@ import FileCardComponent from '../components/FileCardComponents.vue'
 // Data til kortene
 const cards = [
    {
-    title: 'Bilskade',
-    date: '20/02/2025'
-  },
-  {
-    title: 'ABA Månedskontrol',
+    title: 'ABA månedskontrol',
     date: '10/02/2025'
   },
   {
     title: 'AIA',
+    date: '10/02/2025'
+  },
+  {
+    title: 'ABA månedskontrol',
     date: '10/02/2025'
   },
 ]
@@ -28,17 +28,25 @@ const cards = [
             </select>
         </form>
         <div class="display-layouts">
-            <button>ikon her</button>
-            <button>ikon her</button>
+            <button class="list-layout">
+                <font-awesome-icon :icon="['fas', 'list-ul']" />
+            </button>
+            <button class="card-layout">
+                <font-awesome-icon :icon="['fas', 'grip']" />
+            </button>
         </div>
         <div class="save">
-            <button>ikon her</button>
+            <button>
+                <font-awesome-icon :icon="['fas', 'folder-plus']" />
+            </button>
         </div>
     </div>
     <div class="file-containers">
         <h4>Mapper</h4>
-        <button>januar 2025</button>
-        <button>februar 2025</button>
+        <button>
+            <font-awesome-icon :icon="['far', 'folder']" /> januar 2025</button>
+        <button>
+            <font-awesome-icon :icon="['far', 'folder']" /> februar 2025</button>
     </div>
     <div class="files">
         <h4>Filer</h4>
@@ -53,7 +61,9 @@ const cards = [
         </div> 
     </div> 
     <button class="view-more-btn">Se flere...</button>
-    <button class="to-top-btn">Tilbage til toppen</button>
+    <button class="to-top-btn">
+        Tilbage til toppen <font-awesome-icon :icon="['fas', 'arrow-up']" />
+        </button>
 </template>
 
 <style scoped lang="css">
@@ -152,6 +162,6 @@ select{
     background-color: white;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    margin-left: 50rem;
+    margin-left: 37rem;
 }
 </style>

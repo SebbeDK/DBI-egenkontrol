@@ -10,9 +10,10 @@ defineProps({
   <div class="upload-file-card">
     <div id="folderIcon"></div>
     <button id="addFileButton">
-        +
+      <font-awesome-icon :icon="['fas', 'plus']" />
         <h5>Lav nyt skema</h5>
     </button>
+    <font-awesome-icon :icon="['far', 'file']" />
     
   </div>
 </template>
@@ -29,6 +30,13 @@ defineProps({
     left:50%;
     top:50%;
     transform:translate(-50%, -50%);
+    border: none;
+    background-color: #f4f3f4;
+    width: 150px;
+}
+
+#addFileButton svg{
+  font-size: 50px;
 }
 
 .upload-file-card {
@@ -39,6 +47,7 @@ defineProps({
   box-shadow: inset 0px 2px 4px rgba(0,0,0,0.2);
   height: 10rem;
   width: 9rem;
+  
  
 }
 </style>
