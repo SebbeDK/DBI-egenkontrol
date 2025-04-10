@@ -1,3 +1,7 @@
+<script>
+  
+</script>
+
 <template>
     <div class="display-layouts">
             <button class="list-layout">
@@ -8,12 +12,6 @@
             </button>
         </div>
 </template>
-
-<script>
-    export default {
-        
-    }
-</script>
 
 <style scoped>
     .display-layouts button{

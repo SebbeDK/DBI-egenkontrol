@@ -3,7 +3,10 @@ import CreateFileCard from '@/components/CreateFileCard.vue';
 import BackToTop from '../components/BackToTop.vue';
 import DisplayLayoutButtons from '../components/DisplayLayoutButtons.vue';
 import FileCardComponent from '../components/FileCard.vue'
+import FolderBtn from '../components/FolderBtn.vue'
+import NewFolder from '../components/NewFolder.vue';
 import SeeMore from '../components/SeeMore.vue';
+import SelectOption from '../components/SelectOption.vue';
 
 // Data til kortene
 const cards = [
@@ -26,23 +29,15 @@ const cards = [
     <h3>Skemaer</h3>
     <div class="flex-container">
         <form action="">
-            <select name="" id="">
-                <option value="">Valgt: alle</option>
-            </select>
+          <select-option></select-option>
         </form>
         <display-layout-buttons></display-layout-buttons>
-        <div class="save">
-            <button>
-                <font-awesome-icon :icon="['fas', 'folder-plus']" />
-            </button>
-        </div>
+      <new-folder></new-folder>
     </div>
     <div class="file-containers">
         <h4>Mapper</h4>
-        <button>
-            <font-awesome-icon :icon="['far', 'folder']" /> januar 2025</button>
-        <button>
-            <font-awesome-icon :icon="['far', 'folder']" /> februar 2025</button>
+        <folder-btn :title="'januar 2025'"></folder-btn>
+        <folder-btn :title="'februar 2025'"></folder-btn>
     </div>
     <div class="files">
         <h4>Filer</h4>
@@ -60,7 +55,7 @@ const cards = [
     <back-to-top></back-to-top>
 </template>
 
-<style scoped lang="css">
+<style scoped>
 
 h3{
     font-family: Arial, Helvetica, sans-serif;
@@ -77,23 +72,6 @@ h3{
     margin-left: 1.5rem;
 }
 
-select{
-    border-radius: 5px;
-    border: 2px solid #bababa;
-    background-color: #f3f4f3;
-    padding: 0.5rem;
-    margin-left: 1.5rem;
-    font-weight: bold;
-}
-
-.save button{
-    border-radius: 5px;
-    border: 2px solid #bababa;
-    background-color: #f3f4f3;
-    padding: 0.5rem;
-    margin-left: 1.5rem;
-}
-
 .file-containers, h4{
     font-family: Arial, Helvetica, sans-serif;
     font-weight: lighter;
@@ -102,11 +80,6 @@ select{
 }
 
 .file-containers button{
-    border-radius: 5px;
-    border: 2px solid #bababa;
-    background-color: #f3f4f3;
-    padding: 0.5rem;
-    font-weight: bold;
     margin-left: 2rem;
 }
 
