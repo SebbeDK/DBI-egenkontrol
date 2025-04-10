@@ -18,6 +18,16 @@ const routes = [
     name: "Templates",
     component: () => import("../views/Templates.vue"),
   },
+  {
+    path: "/skemaer/skabeloner/opret",
+    name: "MakeTemplate",
+    component: () => import("../views/MakeTemplate.vue"),
+  },
+  {
+    path: "/skemaer/skema/opret",
+    name: "MakeSchedule",
+    component: () => import("../views/MakeSchedule.vue"),
+  },
 
 ];
 
