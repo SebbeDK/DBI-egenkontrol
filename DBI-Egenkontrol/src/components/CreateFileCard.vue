@@ -7,7 +7,7 @@ defineProps({
 </script>
 
 <template>
-  <div class="upload-file-card">
+  <div class="create-file-card">
     <div id="folderIcon"></div>
     <button id="addFileButton">
       <font-awesome-icon :icon="['fas', 'plus']" />
@@ -39,7 +39,7 @@ defineProps({
   font-size: 50px;
 }
 
-.upload-file-card {
+.create-file-card {
   position:relative;
   background: #f4f3f4;
   padding: 1rem;

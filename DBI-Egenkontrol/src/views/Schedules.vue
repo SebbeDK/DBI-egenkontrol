@@ -1,6 +1,9 @@
 <script setup>
-import UploadFileCardComponent from '@/components/UploadFileCardComponent.vue';
-import FileCardComponent from '../components/FileCardComponents.vue'
+import CreateFileCard from '@/components/CreateFileCard.vue';
+import BackToTop from '../components/BackToTop.vue';
+import DisplayLayoutButtons from '../components/DisplayLayoutButtons.vue';
+import FileCardComponent from '../components/FileCard.vue'
+import SeeMore from '../components/SeeMore.vue';
 
 // Data til kortene
 const cards = [
@@ -27,14 +30,7 @@ const cards = [
                 <option value="">Valgt: alle</option>
             </select>
         </form>
-        <div class="display-layouts">
-            <button class="list-layout">
-                <font-awesome-icon :icon="['fas', 'list-ul']" />
-            </button>
-            <button class="card-layout">
-                <font-awesome-icon :icon="['fas', 'grip']" />
-            </button>
-        </div>
+        <display-layout-buttons></display-layout-buttons>
         <div class="save">
             <button>
                 <font-awesome-icon :icon="['fas', 'folder-plus']" />
@@ -51,7 +47,7 @@ const cards = [
     <div class="files">
         <h4>Filer</h4>
         <div class="file-cards">
-            <UploadFileCardComponent></UploadFileCardComponent>
+            <CreateFileCard></CreateFileCard>
             <FileCardComponent 
                 v-for="card in cards"
                 :key="card.title"
@@ -60,10 +56,8 @@ const cards = [
             />
         </div> 
     </div> 
-    <button class="view-more-btn">Se flere...</button>
-    <button class="to-top-btn">
-        Tilbage til toppen <font-awesome-icon :icon="['fas', 'arrow-up']" />
-        </button>
+    <see-more></see-more>
+    <back-to-top></back-to-top>
 </template>
 
 <style scoped lang="css">
@@ -90,17 +84,6 @@ select{
     padding: 0.5rem;
     margin-left: 1.5rem;
     font-weight: bold;
-}
-
-.display-layouts button{
-    border-radius: 5px;
-    border: 2px solid #bababa;
-    background-color: #f3f4f3;
-    padding: 0.5rem;
-}
-
-.display-layouts{
-    margin-left: 2rem;
 }
 
 .save button{
@@ -148,20 +131,5 @@ select{
 .file-cards div:first-of-type{
     margin-left: 0rem;
 }
-.view-more-btn {
-    border: none;
-    background-color: white;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    margin-left: 1.5rem;
-    margin-top: 3.5rem;
-}
 
-.to-top-btn{
-    border: none;
-    background-color: white;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    margin-left: 37rem;
-}
 </style>

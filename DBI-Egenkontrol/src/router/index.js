@@ -13,6 +13,12 @@ const routes = [
     name: "Schedules",
     component: () => import("../views/Schedules.vue"),
   },
+  {
+    path: "/skemaer/skabeloner",
+    name: "Templates",
+    component: () => import("../views/Templates.vue"),
+  },
+
 ];
 
 const router = createRouter({
