@@ -2,7 +2,7 @@
 import CreateFileCard from '@/components/CreateFileCard.vue';
 import BackToTop from '../components/BackToTop.vue';
 import DisplayLayoutButtons from '../components/DisplayLayoutButtons.vue';
-import FileCardComponent from '../components/FileCard.vue'
+import FileCard from '../components/FileCard.vue'
 import FolderBtn from '../components/FolderBtn.vue'
 import NewFolder from '../components/NewFolder.vue';
 import SeeMore from '../components/SeeMore.vue';
@@ -43,7 +43,7 @@ const cards = [
         <h4>Filer</h4>
         <div class="file-cards">
             <CreateFileCard></CreateFileCard>
-            <FileCardComponent 
+            <FileCard
                 v-for="card in cards"
                 :key="card.title"
                 :title="card.title"

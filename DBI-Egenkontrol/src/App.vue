@@ -35,13 +35,13 @@
     <header>
       <nav class="horizontal-menu">
         <router-link to="/" class="menu-item">Rapporter</router-link>
-        <router-link to="/deadlines" class="menu-item">Overskredet deadline</router-link>
-        <router-link to="/brugere" class="menu-item">Brugere</router-link>
-        <router-link to="/grupper" class="menu-item">Grupper</router-link>
-        <router-link to="/dokumenter" class="menu-item">Dokumenter</router-link>
-        <router-link to="/objekter" class="menu-item">Objekter</router-link>
+        <router-link to="/" class="menu-item">Overskredet deadline</router-link>
+        <router-link to="/" class="menu-item">Brugere</router-link>
+        <router-link to="/" class="menu-item">Grupper</router-link>
+        <router-link to="/" class="menu-item">Dokumenter</router-link>
+        <router-link to="/" class="menu-item">Objekter</router-link>
         <router-link to="/skemaer" class="menu-item">Skemaer</router-link>
-        <router-link to="/planlægning" class="menu-item">Planlægning</router-link>
+        <router-link to="/" class="menu-item">Planlægning</router-link>
   </nav>
     </header>
     <main>
