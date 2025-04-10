@@ -2,14 +2,13 @@
 import BackToTop from '../components/BackToTop.vue'
 import DisplayLayoutButtons from '../components/DisplayLayoutButtons.vue'
 import SeeMore from '../components/SeeMore.vue'
-import SelectOption from '../components/SelectOption.vue'
 import FileCard from '@/components/FileCard.vue'
+import SortFilter from '../components/SortFilter.vue'
    
 </script>
 
 <template>
     <div class="page-content">
-        
         <div class="go-back">
             <font-awesome-icon :icon="['fas', 'arrow-left']" />
             <h5>Tilbage til dine skemaer</h5>
@@ -20,9 +19,7 @@ import FileCard from '@/components/FileCard.vue'
             <h3>Tilgængelige skabeloner</h3>
         </div>
         <div class="sort-and-display"> 
-            <select name="" id="">
-                <option value="">Sortér efter</option>
-            </select>
+            <SortFilter></SortFilter>
             <display-layout-buttons></display-layout-buttons>
         </div>
         <div class="file-cards">
