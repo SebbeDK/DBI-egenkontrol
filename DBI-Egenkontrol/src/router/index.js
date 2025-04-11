@@ -28,7 +28,11 @@ const routes = [
     name: "MakeSchedule",
     component: () => import("../views/MakeSchedule.vue"),
   },
-
+  {
+    path: "/skemaer/skema/skabelon",
+    name: "ScheduleTemplate",
+    component: () => import("../views/ScheduleTemplate.vue"),
+  },
 ];
 
 const router = createRouter({

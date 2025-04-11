@@ -63,6 +63,7 @@
     display: flex;
     margin: 0 0 2rem 0;
 }
+
 .breadcrum svg{
     margin: 0.5rem 1rem;
     font-size: 10px;
@@ -72,7 +73,7 @@
     display: flex;
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
-    
+
 }
 
 .go-back svg{
@@ -114,14 +115,11 @@ h3{
     font-weight: bold;
     width: 15rem; 
     color: #bababa;
-
 }
 
 .select-items label{
     margin: 2rem 0 1rem 0;
 }
-
-
 
 .cancel-btn{
     background-color:#f3f4f3;
