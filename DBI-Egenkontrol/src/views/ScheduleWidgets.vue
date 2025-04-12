@@ -126,6 +126,7 @@ width: 15rem;
     position: absolute;
     right: 1rem;
     top: 1rem;
+    z-index: 10;
 }
 
 .widget__info{
@@ -134,17 +135,27 @@ width: 15rem;
     background-color: #f7f7f7;
     border-radius: 5px;
     padding: 1rem;
-    height: 14rem;
     width: 7rem;
     color: gray;
+    top: -10px;
+    left: -10px;
+    z-index: 2;
 
 }
 
-p{
+.widget svg{
+    z-index: 11;
+    position: relative;
+}
+
+.widget__info p{
     font-family: Arial, Helvetica, sans-serif;
     font-size: 2px;
 }
 
+.widget__info p:first-of-type{
+    margin-top: 1rem;
+}
 .control-container{
     display: flex;
     position: relative;
