@@ -38,6 +38,11 @@ const routes = [
     name: "TemplateSchedule",
     component: () => import("../views/TemplateSchedule.vue"),
   },
+  {
+    path: "/skemaer/skema/widget",
+    name: "ScheduleWidgets",
+    component: () => import("../views/ScheduleWidgets.vue"),
+  },
 ];
 
 const router = createRouter({

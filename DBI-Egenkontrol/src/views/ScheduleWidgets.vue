@@ -22,7 +22,7 @@
     <div class="control-container">
         <div class="control-container__control">
             <button>
-            <font-awesome-icon :icon="['far', 'pen-to-square']" />
+            <font-awesome-icon :icon="['far', 'copy']" />
         </button>
         <button>
             <font-awesome-icon :icon="['fas', 'up-down-left-right']" />
@@ -32,8 +32,20 @@
         </button>
         </div>
         <div class="control">
-            <input class="control__checkbox" type="checkbox" name="" id="">
-            <label class="control__label" for="">Anlæggets detektorer, sprinklere og dyser er ubeskadigede</label>
+            <select name="" id="">
+                <option value="">Vælg type</option>
+            </select>
+            <label class="control__label" for=""></label>
+            <div class="widget">
+                <font-awesome-icon :icon="['far', 'circle-question']" />
+                <div class="widget__info">
+                    <p>Tryk på "vælg type" og begynd at lave widgets.</p><br>
+                    <p>Widget's er hvilken type besvarelse der ønskes.</p><br>
+                    <p>Såsom ja/nej, kryds af og så videre.</p><br>
+                    <p>+ knappen tilføjer flere widgets nedenunder.</p><br>
+                    <p>Du kan kopiere et widget til venstre, flytte rundt på dine widget's og slette.</p><br>
+                </div>
+            </div>
         </div>
     </div>
     <button class="add">
@@ -54,17 +66,6 @@
 .breadcrum svg{
     margin: 0.5rem 1rem;
     font-size: 10px;
-}
-
-.go-back{
-    display: flex;
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 0;
-    
-}
-
-.go-back svg{
-    margin: 1.4rem 0.5rem 2rem 0;
 }
 
 h5{
@@ -114,19 +115,34 @@ h3{
     padding: 40px;
     display: flex;
     margin-left: 2rem;
+    position: relative;
 }
 
-.control__checkbox{
-    height: 40px;
-    width: 30px;
+select{
+width: 15rem;
 }
 
+.widget{
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+}
 
-.control__checkbox, label {
+.widget__info{
+    position: absolute;
+    border: 2px solid #e2e2e2;
+    background-color: #f7f7f7;
+    border-radius: 5px;
+    padding: 1rem;
+    height: 14rem;
+    width: 7rem;
+    color: gray;
+
+}
+
+p{
     font-family: Arial, Helvetica, sans-serif;
-    margin-left: 1rem;
-    font-size: 17px;
-    line-height: 18px;
+    font-size: 2px;
 }
 
 .control-container{
