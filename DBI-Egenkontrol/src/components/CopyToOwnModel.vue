@@ -3,7 +3,8 @@
 
 <template>
     <div class="container">
-        <p>*ikon* Kopiér til egne skemaer</p>
+        <font-awesome-icon :icon="['far', 'copy']" />
+        <p>Kopiér til egne skemaer</p>
     </div>
 </template>
 
