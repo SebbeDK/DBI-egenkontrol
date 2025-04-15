@@ -3,7 +3,8 @@
 
 <template>
     <button class="to-top-btn">
-        Tilbage til toppen <font-awesome-icon :icon="['fas', 'arrow-up']" />
+        Tilbage til toppen 
+        <font-awesome-icon :icon="['fas', 'arrow-up']" />
     </button>
 </template>
 
