@@ -5,7 +5,7 @@
     <div class="container">
         <div class="container-content">
             <label class="checkbox-container">
-                <input type="checkbox" checked="true"></input>
+                <input type="checkbox" checked>
                 <span class="checkmark"></span>
             </label>
             <p>Anlæggets detektorer, sprinklere og dyser er ubeskadigede</p>
