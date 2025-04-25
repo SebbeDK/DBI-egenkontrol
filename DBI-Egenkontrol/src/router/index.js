@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import Schedules from '../views/Schedules.vue'
 
+
 const routes = [
   {
     path: "/",
@@ -48,6 +49,11 @@ const routes = [
     name: "StartSchedule",
     component: () => import("../views/StartSchedule.vue"),
   },
+  {
+  path: "/login",
+  name: "LoginPage",
+  component: () => import("../views/LoginPage.vue"),
+},
 ];
 
 const router = createRouter({
