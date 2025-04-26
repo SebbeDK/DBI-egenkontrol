@@ -41,6 +41,8 @@ function handleLogin() {
           type="password"
           required
         />
+        <p>Opret bruger</p>
+        <p>Glemt kodeord</p>
       </div>
       <button type="submit">Log ind</button>
     </form>
@@ -55,7 +57,7 @@ function handleLogin() {
     max-width: 300px;
     margin: 2rem auto;
     padding: 2rem;
-    border: 1px solid #ccc;
+    border: 2px solid #9dbfb4;
     border-radius: 8px;
     font-family: arial;
     justify-content:center;
@@ -78,16 +80,29 @@ function handleLogin() {
     color: green;
 }
 
+label{
+    margin-top: 4px;
+}
+
 button{
     cursor:pointer;
     padding: 0.5rem;
-    margin-top: 1rem;
+    margin-top: 2rem;
     border-radius: 5px;
-    border: 1px solid green;
+    border: 1px solid #9dbfb4;
+    background-color: #9dbfb4;
 
 }
 
 button:hover{
-    background-color: green;
+    background-color: #257474;
+    color:white;
+}
+
+p{
+    font-size: 2px;
+    text-decoration: underline;
+    cursor:pointer;
+    margin-top: 6px;
 }
 </style>
