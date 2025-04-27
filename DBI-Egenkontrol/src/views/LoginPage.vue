@@ -22,9 +22,8 @@ function handleLogin() {
 <div class="login-container">
     <h2>DBI Login</h2>
     <form @submit.prevent="handleLogin">
-      <div>
+      <div class="input-container">
         <label for="username">Brugernavn:</label>
-        <br>
         <input
           id="username"
           v-model="username"
@@ -32,9 +31,8 @@ function handleLogin() {
           required
         />
       </div>
-      <div>
+      <div class="input-container">
         <label for="password">Adgangskode:</label>
-        <br>
         <input
           id="password"
           v-model="password"
@@ -71,7 +69,9 @@ function handleLogin() {
     gap: 1rem;
 }
 
-
+.input-container{
+    margin-bottom: 1rem;
+}
 .error {
     color: red;
 }
@@ -82,6 +82,10 @@ function handleLogin() {
 
 label{
     margin-top: 4px;
+    margin-bottom:0.15rem;
+    display: block;
+
+    
 }
 
 button{
