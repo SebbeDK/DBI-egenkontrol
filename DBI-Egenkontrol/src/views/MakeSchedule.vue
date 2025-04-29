@@ -1,5 +1,5 @@
 <script setup>
-   
+
 </script>
 
 <template>
@@ -113,7 +113,7 @@ h3{
     background-color: none;
     padding: 0.5rem;
     font-weight: bold;
-    width: 15rem; 
+    width: 15rem;
     color: #bababa;
 }
 
@@ -160,7 +160,7 @@ h3{
     background-color: none;
     padding: 0.5rem;
     font-weight: bold;
-    width: 20rem; 
+    width: 20rem;
     color: #bababa;
     margin-top: 1rem;
 }

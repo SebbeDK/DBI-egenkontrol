@@ -42,7 +42,11 @@ const cards = [
     <div class="files">
         <h4>Filer</h4>
         <div class="file-cards">
-            <CreateFileCard></CreateFileCard>
+            <div>
+                <router-link to="/skemaer/skema/start">
+                    <CreateFileCard></CreateFileCard>
+                </router-link>
+            </div>
             <FileCard
                 v-for="card in cards"
                 :key="card.title"

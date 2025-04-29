@@ -2,8 +2,8 @@
 defineProps({
   title: String,
   description: String,
-  date: String
-})
+  date: String,
+});
 </script>
 
 <template>
@@ -14,7 +14,7 @@ defineProps({
         <h5>Lav nyt skema</h5>
     </button>
     <font-awesome-icon :icon="['far', 'file']" />
-    
+
   </div>
 </template>
 
@@ -47,8 +47,8 @@ defineProps({
   box-shadow: inset 0px 2px 4px rgba(0,0,0,0.2);
   height: 10rem;
   width: 9rem;
-  
- 
+
+
 }
 </style>
 

@@ -1,7 +1,7 @@
 <script setup>
-  defineProps({
+defineProps({
   title: String,
-})
+});
 </script>
 
 <template>

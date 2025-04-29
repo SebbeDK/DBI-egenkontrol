@@ -1,7 +1,7 @@
 <script setup>
 </script>
 
-<template>  
+<template>
     <div class="search">
         <button href="#" class="sidebar__search">
             <font-awesome-icon class="icon" icon="fa-solid fa-magnifying-glass" /></button>
@@ -35,8 +35,8 @@
   margin-top: 5px;
 }
 .search input::placeholder {
-  color: white; 
-  opacity: 0.7; 
+  color: white;
+  opacity: 0.7;
 }
 .icon{
     color: white;

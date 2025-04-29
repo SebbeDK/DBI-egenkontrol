@@ -4,14 +4,14 @@
 <template>
     <div class="dropdown">
     <button class="dropbtn">
-        Sortér efter 
+        Sortér efter
         <font-awesome-icon class="icon" icon="fa-solid fa-angle-down" />
     </button>
     <div class="dropdown-content">
         <a href="#">Vis alle</a>
         <a href="#">Mest anvendte...</a>
         <a href="#">Brand</a>
-        <a href="#">Institutioner</a> 
+        <a href="#">Institutioner</a>
         <a href="#">Brand</a>
     </div>
     </div>

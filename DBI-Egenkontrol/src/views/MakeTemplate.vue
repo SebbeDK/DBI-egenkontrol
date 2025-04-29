@@ -1,10 +1,10 @@
 <script setup>
-import BackToTop from '../components/BackToTop.vue'
-import DisplayLayoutButtons from '../components/DisplayLayoutButtons.vue'
-import SeeMore from '../components/SeeMore.vue'
-import FileCard from '@/components/FileCard.vue'
-import SortFilter from '../components/SortFilter.vue'
-   
+import BackToTop from '../components/BackToTop.vue';
+import DisplayLayoutButtons from '../components/DisplayLayoutButtons.vue';
+import SeeMore from '../components/SeeMore.vue';
+import FileCard from '@/components/FileCard.vue';
+import SortFilter from '../components/SortFilter.vue';
+
 </script>
 
 <template>
@@ -20,7 +20,7 @@ import SortFilter from '../components/SortFilter.vue'
             <font-awesome-icon :icon="['far', 'circle']" />
             <h3>Tilgængelige skabeloner</h3>
         </div>
-        <div class="sort-and-display"> 
+        <div class="sort-and-display">
             <SortFilter></SortFilter>
             <display-layout-buttons></display-layout-buttons>
         </div>
@@ -28,12 +28,12 @@ import SortFilter from '../components/SortFilter.vue'
             <FileCard :title="'ABA månedskontrol'"></FileCard>
             <FileCard :title="'ABV-anlæg (Månedlig)'"></FileCard>
         </div>
-       
-    
+
+
         <div>
             <see-more></see-more>
             <back-to-top></back-to-top>
-        </div>    
+        </div>
 
     </div>
 </template>
@@ -83,7 +83,7 @@ select{
     display: flex;
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
-    
+
 }
 
 .go-back svg{

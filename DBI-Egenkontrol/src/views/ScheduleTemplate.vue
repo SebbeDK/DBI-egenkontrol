@@ -1,6 +1,6 @@
 <script setup>
 
- </script>
+</script>
 
 <template>
     <div class="page-content">
@@ -11,14 +11,14 @@
         </div>
         <div class="actions-control__line">
             <h3 class="schedule-info">ABA månedskontrol</h3>
-        
+
         <div class="actions">
             <button class="actions__btn"><font-awesome-icon :icon="['far', 'floppy-disk']" /> Gem</button>
             <button class="actions__btn"><font-awesome-icon :icon="['far', 'pen-to-square']" /> Rediger rettigheder</button>
             <button class="actions__btn"><font-awesome-icon :icon="['fas', 'print']" /> Print eller se skema</button>
         </div>
         </div>
-        
+
     <div class="control-container">
         <div class="control-container__control">
             <button>
@@ -60,7 +60,7 @@
     display: flex;
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
-    
+
 }
 
 .go-back svg{
@@ -156,7 +156,7 @@ h3{
     background-color: white;
     margin-top: 0.5rem;
     font-size: 25px;
-    
+
 }
 
 .actions__btn{

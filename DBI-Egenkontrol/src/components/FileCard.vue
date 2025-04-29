@@ -1,8 +1,8 @@
 <script setup>
 defineProps({
   title: String,
-  date: String
-})
+  date: String,
+});
 </script>
 
 <template>

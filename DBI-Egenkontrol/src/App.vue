@@ -29,7 +29,7 @@
         <h5>Du kan finde svar på ofte stillede spørgsmål her.</h5>
         <button class="see_more">Se her</button>
       </div>
-    </div>  
+    </div>
   </aside>
   <div class="content">
     <header>
@@ -106,8 +106,8 @@
   width: 7rem;
 }
 .search input::placeholder {
-  color: white; 
-  opacity: 0.7; 
+  color: white;
+  opacity: 0.7;
 }
 .templates button{
   margin-top: 1rem;
@@ -166,18 +166,18 @@ text-align: center;
 
 .horizontal-menu a{
   color: #9dbfb4;
-  font-family:Arial, Helvetica, sans-serif; 
+  font-family:Arial, Helvetica, sans-serif;
   font-weight: light;
   text-decoration: none;
   padding: 0.5rem;
   font-size: 26px;
-  position: relative; 
-  transition: color 0.3s ease; 
+  position: relative;
+  transition: color 0.3s ease;
 }
 
 .horizontal-menu a.router-link-active {
-  color: #257473; 
-  font-weight: bold; 
+  color: #257473;
+  font-weight: bold;
 }
 
 .horizontal-menu a.router-link-active::after {
@@ -188,11 +188,11 @@ text-align: center;
   width: 50%;
   height: 3px;
   background-color: #257473;
-  transform: translateY(-50%); 
+  transform: translateY(-50%);
 }
 
 .horizontal-menu a:hover::after {
-  width: 50%; 
+  width: 50%;
 }
 
 .sidebar__btn-profile, .sidebar__btn-settings {

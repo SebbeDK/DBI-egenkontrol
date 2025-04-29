@@ -1,19 +1,19 @@
 <script setup>
-import { ref } from 'vue'
+import { ref } from 'vue';
 
-const username = ref('')
-const password = ref('')
-const error = ref('')
-const success = ref('')
+const username = ref('');
+const password = ref('');
+const error = ref('');
+const success = ref('');
 
 function handleLogin() {
-  error.value = ''
-  success.value = ''
+  error.value = '';
+  success.value = '';
 
   if (username.value === 'admin' && password.value === '1234') {
-    success.value = 'Login successful!'
+    success.value = 'Login successful!';
   } else {
-    error.value = 'Invalid username or password.'
+    error.value = 'Invalid username or password.';
   }
 }
 </script>
@@ -85,7 +85,7 @@ label{
     margin-bottom:0.15rem;
     display: block;
 
-    
+
 }
 
 button{

@@ -20,7 +20,7 @@
             <a href="#">Tjekboks</a>
             <a href="#">Ja / Nej</a>
             <a href="#">Tjekboks med kommentarfelt</a>
-            <a href="#">Ja / nej med kommentar</a> 
+            <a href="#">Ja / nej med kommentar</a>
             <a href="#">Tekstfelt (stort)</a>
         </div>
     </div>
@@ -81,7 +81,7 @@ span{
     padding: 2rem;
 }
 .icons-list{
-    font-size: 1.5rem;   
+    font-size: 1.5rem;
 }
 
 .icon{

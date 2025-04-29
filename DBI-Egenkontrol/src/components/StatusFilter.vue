@@ -4,7 +4,7 @@
 <template>
     <div class="dropdown">
     <button class="dropbtn">
-        Status: alle 
+        Status: alle
         <font-awesome-icon class="icon" icon="fa-solid fa-angle-down" />
     </button>
     <div class="dropdown-content">

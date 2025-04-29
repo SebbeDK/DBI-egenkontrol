@@ -33,7 +33,7 @@
     cursor: pointer;
     margin-top: 20px;
     margin-right: 15px;
-    
+
 }
 
 .checkbox-container input {
@@ -66,7 +66,7 @@
 }
 .checkbox-container input:checked ~ .checkmark:after{
     display: block;
-} 
+}
 .checkbox-container .checkmark:after{
   left: 9px;
   top: 5px;

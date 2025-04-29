@@ -4,7 +4,7 @@
 <template>
 <div class="button">
     <font-awesome-icon class="icon" icon="fa-solid fa-gear" />
-</div>    
+</div>
 </template>
 
 <style scoped>

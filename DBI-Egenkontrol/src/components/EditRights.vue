@@ -3,7 +3,7 @@
 
 <template>
     <button class="actions__btn">
-    <font-awesome-icon :icon="['far', 'pen-to-square']" /> 
+    <font-awesome-icon :icon="['far', 'pen-to-square']" />
     Rediger rettigheder
     </button>
 </template>

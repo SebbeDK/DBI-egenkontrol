@@ -2,11 +2,11 @@ import './assets/main.css';
 
 import { createApp } from 'vue';
 import App from './App.vue';
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import router from "./router";
-import { faCalendarDays, faEllipsisV,faListUl,faGrip,faPlus, faFolderPlus, faArrowUp, faUser, faGear, faMagnifyingGlass, faArrowLeft, faAngleDown, faPrint, faUpDownLeftRight, faCirclePlus, faArrowsUpDownLeftRight, faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import { faFile,faFolder, faCircle, faFloppyDisk, faPenToSquare, faCopy, faCircleQuestion, } from "@fortawesome/free-regular-svg-icons";
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import router from './router';
+import { faCalendarDays, faEllipsisV,faListUl,faGrip,faPlus, faFolderPlus, faArrowUp, faUser, faGear, faMagnifyingGlass, faArrowLeft, faAngleDown, faPrint, faUpDownLeftRight, faCirclePlus, faArrowsUpDownLeftRight, faTrashCan, faReply} from '@fortawesome/free-solid-svg-icons';
+import { faFile,faFolder, faCircle, faFloppyDisk, faPenToSquare, faCopy, faCircleQuestion } from '@fortawesome/free-regular-svg-icons';
 
 
 // icons registered here.
@@ -33,8 +33,8 @@ library.add(faTrashCan);
 library.add(faCirclePlus);
 library.add(faCopy);
 library.add(faCircleQuestion);
-library.add(faArrowsUpDownLeftRight)
-
+library.add(faArrowsUpDownLeftRight);
+library.add(faReply)
 
 
 
@@ -51,5 +51,5 @@ library.add(faArrowsUpDownLeftRight)
 
 const app = createApp(App);
 app.use(router);
-app.mount("#app");
-app.component("font-awesome-icon", FontAwesomeIcon);
+app.mount('#app');
+app.component('font-awesome-icon', FontAwesomeIcon);

@@ -5,9 +5,7 @@
 <span class="breadcrumbs">
     <p>Skemaer</p>
     <span class="separator"></span>
-    <p>Skema</p>
-    <span class="separator"></span>
-    <h2>Tilgængelige skabeloner</h2>
+    <h2>Skema</h2>
 </span>
 </template>
 
@@ -18,6 +16,8 @@ p{
 .breadcrumbs{
     display: flex;
     align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+
 }
 
 .separator {

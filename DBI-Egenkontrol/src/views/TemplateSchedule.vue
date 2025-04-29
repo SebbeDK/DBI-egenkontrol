@@ -1,6 +1,6 @@
 <script setup>
 
- </script>
+</script>
 
 <template>
     <div class="page-content">
@@ -13,7 +13,7 @@
         </div>
         <div class="actions-control__line">
             <h3 class="schedule-info">ABA månedskontrol</h3>
-        
+
         <div class="actions">
             <button class="actions__btn"><font-awesome-icon :icon="['far', 'copy']" /> Kopier til egne skemaer </button>
         </div>
@@ -24,7 +24,7 @@
             <label class="control__label" for="">Anlæggets detektorer, sprinklere og dyser er ubeskadigede</label>
         </div>
     </div>
-   
+
     </div>
 </template>
 
