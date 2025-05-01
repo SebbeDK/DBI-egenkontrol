@@ -128,6 +128,8 @@ background-color:#f3f4f3;
 border-radius: 30px;
 margin-top: 25rem;
 box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+position: fixed;
+width: 10.5rem;
 }
 
 h3{

@@ -54,17 +54,18 @@ const cards = [
                 :date="card.date"
             />
         </div> 
-    </div> 
-    <see-more></see-more>
-    <back-to-top></back-to-top>
+    </div>
+    <div class="bottom-links"> 
+        <see-more></see-more>
+        <back-to-top></back-to-top>
+    </div>
 </template>
 
 <style scoped>
 
 h3{
     font-family: Arial, Helvetica, sans-serif;
-    margin-left: 1.5rem;
-    margin: 3rem 2rem 3rem;
+    margin: 3rem 1.5rem 3rem;
 }
 
 .flex-container{
@@ -109,4 +110,7 @@ h3{
     margin-left: 0rem;
 }
 
+.bottom-links{
+    margin: 2rem 1.5rem 3rem;
+}
 </style>
