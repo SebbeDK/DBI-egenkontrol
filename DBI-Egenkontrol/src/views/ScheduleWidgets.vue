@@ -140,6 +140,7 @@ width: 15rem;
     top: -10px;
     left: -10px;
     z-index: 2;
+    display: none;
 
 }
 
@@ -156,6 +157,12 @@ width: 15rem;
 .widget__info p:first-of-type{
     margin-top: 1rem;
 }
+
+
+.widget:hover .widget__info {
+    display: block;
+}
+
 .control-container{
     display: flex;
     position: relative;
