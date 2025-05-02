@@ -18,7 +18,7 @@ function selectFolder(index) {
 const editingFolderIndex = ref(null);
 const editingFolderTitle = ref('');
 
-
+// info på cards
 const folders = ref([
    { 
         title: 'januar 2025',
@@ -37,8 +37,8 @@ const folders = ref([
                 date: "1/2/2025"
             },
             {
-                title: "Koncerter",
-                date: "2. Maj 2025"
+                title: "AIA",
+                date: "10/2/2025"
             }
         ]
     },
@@ -47,7 +47,7 @@ const folders = ref([
 function startEditingFolder(index) {
   editingFolderIndex.value = index;
   editingFolderTitle.value = folders.value[index].title;
-  // Fokusér input automatisk (se næste punkt)
+ 
 }
 
 function saveFolderTitle(index) {
@@ -124,22 +124,7 @@ function addFolder() {
         </div>
         </div>
 
-    <!-- <div class="files">
-        <h4>Filer</h4>
-        <div class="file-cards">
-            <div>
-                <router-link to="/skemaer/skema/start">
-                    <CreateFileCard></CreateFileCard>
-                </router-link>
-            </div>
-            <FileCard
-                v-for="card in cards"
-                :key="card.title"
-                :title="card.title"
-                :date="card.date"
-            />
-        </div> 
-    </div> -->
+    
     <div class="bottom-links"> 
         <see-more></see-more>
         <back-to-top></back-to-top>
@@ -149,7 +134,7 @@ function addFolder() {
 <style scoped>
 .selected {
   background: #e0e0e0;
-  /* eller hvad der nu passer til dit design */
+  
 }
 
 h3{
