@@ -157,6 +157,7 @@ margin: 5px 0px 15px 100px;
 height: 1.5rem;
 width: 4rem;
 text-align: center;
+cursor: pointer;
 }
 
 .horizontal-menu{

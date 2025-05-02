@@ -1,4 +1,5 @@
 <script setup>
+import { ref, computed } from 'vue';
 import CreateFileCard from '@/components/CreateFileCard.vue';
 import BackToTop from '../components/BackToTop.vue';
 import DisplayLayoutButtons from '../components/DisplayLayoutButtons.vue';
@@ -8,21 +9,64 @@ import NewFolder from '../components/NewFolder.vue';
 import SeeMore from '../components/SeeMore.vue';
 import SelectOption from '../components/SelectOption.vue';
 
-// Data til kortene
-const cards = [
-   {
-    title: 'ABA månedskontrol',
-    date: '10/02/2025'
-  },
-  {
-    title: 'AIA',
-    date: '10/02/2025'
-  },
-  {
-    title: 'ABA månedskontrol',
-    date: '10/02/2025'
-  },
-]
+const selectedFolderIndex = ref(null);
+
+function selectFolder(index) {
+  selectedFolderIndex.value = index;
+}
+
+const editingFolderIndex = ref(null);
+const editingFolderTitle = ref('');
+
+
+const folders = ref([
+   { 
+        title: 'januar 2025',
+        files: [
+            {
+                title: "Dansk",
+                date: "21/1/2025"
+            }
+        ]
+    },
+    { 
+        title: 'februar 2025',
+        files: [
+            {
+                title: "Månedskontrol",
+                date: "1/2/2025"
+            },
+            {
+                title: "Koncerter",
+                date: "2. Maj 2025"
+            }
+        ]
+    },
+]);
+
+function startEditingFolder(index) {
+  editingFolderIndex.value = index;
+  editingFolderTitle.value = folders.value[index].title;
+  // Fokusér input automatisk (se næste punkt)
+}
+
+function saveFolderTitle(index) {
+  if (editingFolderTitle.value.trim() !== '') {
+    folders.value[index].title = editingFolderTitle.value.trim();
+  }
+  editingFolderIndex.value = null;
+}
+
+function cancelEditing() {
+  editingFolderIndex.value = null;
+}
+
+
+function addFolder() {
+  folders.value.push({ title: "Ny Mappe", files: [] });
+}
+
+
 </script>
 
 <template>
@@ -32,14 +76,55 @@ const cards = [
           <select-option></select-option>
         </form>
         <display-layout-buttons></display-layout-buttons>
-      <new-folder></new-folder>
+      <new-folder @click="addFolder"></new-folder>
     </div>
     <div class="file-containers">
         <h4>Mapper</h4>
-        <folder-btn :title="'januar 2025'"></folder-btn>
-        <folder-btn :title="'februar 2025'"></folder-btn>
+        <template v-for="(folder, index) in folders" :key="folder.title">
+            <div style="display: inline-block;">
+                <template v-if="editingFolderIndex === index">
+                <input
+                    v-model="editingFolderTitle"
+                    @blur="saveFolderTitle(index)"
+                    @keyup.enter="saveFolderTitle(index)"
+                    @keyup.esc="cancelEditing"
+                    ref="editInput"
+                    style="font-size: 1rem; padding: 0.3em; width: 120px;"
+                    :autofocus="true"
+                />
+                </template>
+                <template v-else>
+                <folder-btn
+                    :title="folder.title"
+                    @click="selectFolder(index)"
+                    @dblclick.stop="startEditingFolder(index)"
+                    :class="{ selected: selectedFolderIndex === index }"
+                />
+                </template>
+            </div>
+        </template>
+
     </div>
     <div class="files">
+        <h4>Filer</h4>
+        <div class="file-cards">
+            <div>
+            <router-link to="/skemaer/skema/start">
+                <CreateFileCard />
+            </router-link>
+            </div>
+            <template v-if="selectedFolderIndex !== null">
+            <FileCard
+                v-for="file in folders[selectedFolderIndex].files"
+                :key="file.title"
+                :title="file.title"
+                :date="file.date"
+            />
+            </template>
+        </div>
+        </div>
+
+    <!-- <div class="files">
         <h4>Filer</h4>
         <div class="file-cards">
             <div>
@@ -54,7 +139,7 @@ const cards = [
                 :date="card.date"
             />
         </div> 
-    </div>
+    </div> -->
     <div class="bottom-links"> 
         <see-more></see-more>
         <back-to-top></back-to-top>
@@ -62,6 +147,10 @@ const cards = [
 </template>
 
 <style scoped>
+.selected {
+  background: #e0e0e0;
+  /* eller hvad der nu passer til dit design */
+}
 
 h3{
     font-family: Arial, Helvetica, sans-serif;
@@ -84,12 +173,12 @@ h3{
     font-size: 19px;
 }
 
-.file-containers button{
+.file-containers button, .file-containers input{
     margin-left: 2rem;
 }
-
-.file-containers :first-of-type{
-    margin-left: 0rem;
+.file-containers div:first-of-type button, 
+.file-containers div:first-of-type input{
+    margin-left:0;
 }
 
 
