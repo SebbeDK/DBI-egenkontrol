@@ -23,8 +23,8 @@ import CopyExistingModel from '@/components/CopyExistingModel.vue';
             </div>
         </div>
         <div class="btn-container">
-            <CreateNewModel class="btn-container-btn"/>
-            <CopyExistingModel class="btn-container-btn"/>
+            <CreateNewModel class="btn-container__btn"/>
+            <CopyExistingModel class="btn-container__btn"/>
         </div>
     </div>
 </template>
@@ -58,6 +58,7 @@ h3{
     justify-content: space-between;
     width: 40rem;
 }
+
 .go-back{
     display: flex;
     font-family: Arial, Helvetica, sans-serif;
@@ -74,7 +75,7 @@ h3{
     display: flex;
 }
 
-.btn-container-btn{
+.btn-container__btn{
     margin-left: 2rem;
 }
 

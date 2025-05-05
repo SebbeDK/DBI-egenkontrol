@@ -17,7 +17,10 @@ padding: 1rem;
 padding-left: 2rem;
 }
 
-.container:hover{
-background-color: #d1d8d1
+h3{
+    font-family: Arial, Helvetica, sans-serif;
+    height: 6rem;
 }
+
+
 </style>

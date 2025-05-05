@@ -82,6 +82,8 @@ function addFolder() {
         <h4>Mapper</h4>
         <template v-for="(folder, index) in folders" :key="folder.title">
             <div style="display: inline-block;">
+
+                <!-- hvis redigering - vis input -->
                 <template v-if="editingFolderIndex === index">
                 <input
                     v-model="editingFolderTitle"
@@ -113,6 +115,8 @@ function addFolder() {
                 <CreateFileCard />
             </router-link>
             </div>
+
+            <!-- viser filer i den valgte mappe-->
             <template v-if="selectedFolderIndex !== null">
             <FileCard
                 v-for="file in folders[selectedFolderIndex].files"
@@ -161,6 +165,7 @@ h3{
 .file-containers button, .file-containers input{
     margin-left: 2rem;
 }
+
 .file-containers div:first-of-type button, 
 .file-containers div:first-of-type input{
     margin-left:0;
