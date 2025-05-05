@@ -24,7 +24,7 @@
     border: 1px solid grey;
     background-color: #fcfff5;
     width: 35rem;
-    padding-left: 10px;
+    padding: 20px;
     border-radius: 5px;
     border-color: #a8c599;
     position: absolute;
@@ -35,10 +35,13 @@
 h3{
     color: #4a7435;
     margin: 10px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 h5{
     color: #a8c599;
     margin: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 100;
 }
 .exit-btn{
     position: relative;

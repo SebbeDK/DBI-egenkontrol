@@ -4,18 +4,18 @@
 <template>
     <div class="container">
         <button class="exit-btn">X</button>
-        <h3>Hov! Du har ikke gemt.</h3>
-        <h5>Du kan gemme nu, fortryde eller fortsætte uden at gemme.</h5>
-        <button class="save-btn">Gem nu</button>
-        <button class="cancel-btn">Fortryd</button>
+        <h3>Hov! Du er ved at forlade skemaet.</h3>
+        <h5>Du kan gemme nu, fortryde eller fortsætte.</h5>
         <button class="continue-btn">Fortsæt</button>
+        <button class="cancel-btn">Fortryd</button>
+        <button class="save-btn">Gem nu</button>
     </div>
 </template>
 
 <style scoped>
 .container{
     margin-left: 10px;
-    border: 1px solid grey;
+    border: 2px solid grey;
     background-color: #fffaf3;
     width: 30rem;
     height: 9rem;
@@ -49,7 +49,7 @@ h5{
     font-weight: bold;
     color: #7a4d05;
     background-color: white;
-    border: 1px solid #7a4d05;
+    border: 2px solid #7a4d05;
     padding: 5px 10px;
 }
 .cancel-btn{
@@ -59,7 +59,7 @@ h5{
     color: #7a4d05;
     font-weight: bold;
     background-color: white;
-    border: 1px solid #7a4d05;
+    border: 2px solid #7a4d05;
     padding: 5px 10px;
 
 }
@@ -70,6 +70,6 @@ h5{
     color: white;
     margin-right: 20px;
     padding: 5px 10px;
-    border: 1px solid #7a4d05;
+    border: 2px solid #7a4d05;
 }
 </style>

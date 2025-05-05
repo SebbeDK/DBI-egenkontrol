@@ -68,7 +68,8 @@ h3{
 .actions{
     display: flex;
     height: 2rem; 
-    margin-top: -3rem;   
+    margin-top: -3rem; 
+    margin-left: 27rem;  
 }
 
 .actions-control__line{
@@ -91,11 +92,15 @@ h3{
 
 .btn-container{
     display: flex;
-    height: 7rem;
+
 }
 
 .btn-container__btn{
     margin-left: 2rem;
+}
+
+.btn-container div:first-of-type.btn-container__btn{
+    margin-left: 0;
 }
 
 </style>
