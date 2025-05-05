@@ -2,21 +2,35 @@
 </script>
 
 <template>
-    <div class="container">
+<div class="alert-background">
+    <div class="alert">
         <button class="exit-btn">X</button>
         <h3>Dit skema blev gemt succesfuldt</h3>
         <h5>Du kan nu finde det under "dine skemaer"</h5>
     </div>
+</div>
 </template>
 
 <style scoped>
-.container{
+.alert-background{
+    position: absolute;
+    top: 124px;
+    background-color: rgba(255,255,255,0.8);
+    width: 100%;
+    height: 100%;
+}
+
+.alert{
     border: 1px solid grey;
     background-color: #fcfff5;
     width: 35rem;
     padding-left: 10px;
     border-radius: 5px;
     border-color: #a8c599;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 h3{
     color: #4a7435;

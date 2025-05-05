@@ -4,6 +4,21 @@ import SaveButton from '@/components/SaveButton.vue';
 import EditRights from '@/components/EditRights.vue';
 import CreateNewModel from '@/components/CreateNewModel.vue';
 import CopyExistingModel from '@/components/CopyExistingModel.vue';
+
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import FeedbackSuccess from '@/components/FeedbackSuccess.vue';
+const router = useRouter()
+
+const showSuccess = ref(false)
+
+function save() {
+    showSuccess.value = true;
+
+    setTimeout(() => {
+          router.push('/skemaer')
+      },5000)
+}
 </script>
 
 <template>
@@ -18,7 +33,7 @@ import CopyExistingModel from '@/components/CopyExistingModel.vue';
         <div class="actions-control__line">
             <h3 class="schedule-info">Unavngivet</h3>
             <div class="actions">
-                <SaveButton />
+                <SaveButton  @click="save()"/>
                 <EditRights />
             </div>
         </div>
@@ -27,6 +42,8 @@ import CopyExistingModel from '@/components/CopyExistingModel.vue';
             <CopyExistingModel class="btn-container__btn"/>
         </div>
     </div>
+
+        <FeedbackSuccess v-if="showSuccess"></FeedbackSuccess>
 </template>
 
 <style scoped>
@@ -50,7 +67,8 @@ h3{
 
 .actions{
     display: flex;
-    height: 3rem;    
+    height: 2rem; 
+    margin-top: -3rem;   
 }
 
 .actions-control__line{
@@ -73,6 +91,7 @@ h3{
 
 .btn-container{
     display: flex;
+    height: 7rem;
 }
 
 .btn-container__btn{

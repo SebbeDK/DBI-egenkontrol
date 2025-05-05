@@ -17,17 +17,19 @@ function goToSkabelon() {
 
 <style scoped>
 .container{
-border: 1px solid grey;
+border: 2px solid rgb(212, 206, 206);
 border-radius: 10px;
-width: 20rem;
+width: 15rem;
 padding: 1rem;
 padding-left: 2rem;
 cursor: pointer;
+font-size: 15px;
+font-family: Arial, Helvetica, sans-serif;
+
 }
 
 h3{
-    font-family: Arial, Helvetica, sans-serif;
-    height: 6rem;
+    margin-top: 0.5rem;
 }
 
 
