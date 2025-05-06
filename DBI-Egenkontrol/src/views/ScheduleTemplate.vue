@@ -1,5 +1,18 @@
 <script setup>
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import FeedbackSuccess from '@/components/FeedbackSuccess.vue';
+const router = useRouter()
 
+const showSuccess = ref(false)
+
+function save() {
+    showSuccess.value = true;
+
+    setTimeout(() => {
+          router.push('/skemaer')
+      },5000)
+}
 </script>
 
 <template>
@@ -13,7 +26,7 @@
             <h3 class="schedule-info">ABA månedskontrol</h3>
 
         <div class="actions">
-            <button class="actions__btn"><font-awesome-icon :icon="['far', 'floppy-disk']" /> Gem</button>
+            <button class="actions__btn" @click="save()"><font-awesome-icon :icon="['far', 'floppy-disk']" /> Gem</button>
             <button class="actions__btn"><font-awesome-icon :icon="['far', 'pen-to-square']" /> Rediger rettigheder</button>
             <button class="actions__btn"><font-awesome-icon :icon="['fas', 'print']" /> Print eller se skema</button>
         </div>
@@ -41,9 +54,10 @@
     </button>
 
         <div class="save-schedule">
-            <button class="save-btn"><font-awesome-icon :icon="['far', 'floppy-disk']" /> Gem</button>
+            <button class="save-btn" @click="save()"><font-awesome-icon :icon="['far', 'floppy-disk']" /> Gem</button>
         </div>
     </div>
+    <FeedbackSuccess v-if="showSuccess"></FeedbackSuccess>
 </template>
 
 <style scoped>

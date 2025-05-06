@@ -1,5 +1,19 @@
 <script setup>
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import FeedbackSuccess from '@/components/FeedbackSuccess.vue';
+const router = useRouter()
 
+
+const showSuccess = ref(false)
+
+function save() {
+    showSuccess.value = true;
+
+    setTimeout(() => {
+          router.push('/skemaer')
+      },5000)
+}
 </script>
 
 <template>
@@ -53,9 +67,10 @@
     </button>
 
         <div class="save-schedule">
-            <button class="save-btn"><font-awesome-icon :icon="['far', 'floppy-disk']" /> Gem</button>
+            <button class="save-btn" @click="save()"><font-awesome-icon :icon="['far', 'floppy-disk']" /> Gem</button>
         </div>
     </div>
+    <FeedbackSuccess v-if="showSuccess"></FeedbackSuccess>
 </template>
 
 <style scoped>
