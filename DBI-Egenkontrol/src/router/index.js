@@ -1,23 +1,21 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Home from '../views/Home.vue';
-import Schedules from '../views/Schedules.vue';
 
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: () => import('../views/Home.vue'),
+    name: 'HomeView',
+    component: () => import('../views/HomeView.vue'),
   },
   {
     path: '/skemaer',
-    name: 'Schedules',
-    component: () => import('../views/Schedules.vue'),
+    name: 'SchedulesView',
+    component: () => import('../views/SchedulesView.vue'),
   },
   {
     path: '/skemaer/skabeloner',
-    name: 'Templates',
-    component: () => import('../views/Templates.vue'),
+    name: 'TemplatesView',
+    component: () => import('../views/TemplatesView.vue'),
   },
   {
     path: '/skemaer/skabeloner/opret',
