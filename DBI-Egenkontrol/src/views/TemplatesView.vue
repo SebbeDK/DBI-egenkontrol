@@ -27,7 +27,6 @@ import SortFilter from '../components/SortFilter.vue';
             <FileCard :title="'ABV-anlæg (Månedlig)'"></FileCard>
         </div>
 
-
         <div>
             <see-more></see-more>
             <back-to-top></back-to-top>

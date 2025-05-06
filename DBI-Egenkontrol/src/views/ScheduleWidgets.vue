@@ -27,7 +27,7 @@ function save() {
             <h3 class="schedule-info">ABA månedskontrol</h3>
 
         <div class="actions">
-            <button class="actions__btn"><font-awesome-icon :icon="['far', 'floppy-disk']" /> Gem</button>
+            <button class="actions__btn" @click="save()"><font-awesome-icon :icon="['far', 'floppy-disk']" /> Gem</button>
             <button class="actions__btn"><font-awesome-icon :icon="['far', 'pen-to-square']" /> Rediger rettigheder</button>
             <button class="actions__btn"><font-awesome-icon :icon="['fas', 'print']" /> Print eller se skema</button>
         </div>
@@ -114,6 +114,7 @@ h3{
     color: white;
     margin-left: 32rem;
     margin-top: 3rem;
+    cursor: pointer;
 }
 
 .save-schedule svg{
@@ -214,6 +215,7 @@ width: 15rem;
     border: 2px solid #e2e2e2;
     font-size: 13px;
     margin-left: 15px;
+    cursor: pointer;
 
 }
 .actions__btn svg{
