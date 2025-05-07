@@ -85,7 +85,7 @@ onBeforeRouteLeave((to, from, next)=>{
             <font-awesome-icon :icon="['fas', 'up-down-left-right']" />
         </button>
         <button>
-            <font-awesome-icon :icon="['far', 'trash-can']" />
+            <font-awesome-icon :icon="['fas', 'trash-can']"/>
         </button>
         </div>
         <div class="control">
