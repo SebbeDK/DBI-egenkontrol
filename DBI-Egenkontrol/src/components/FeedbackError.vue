@@ -1,20 +1,38 @@
 <script setup>
+<<<<<<< Updated upstream
 
 
+=======
+defineProps({
+    visible: Boolean
+})
+defineEmits(['confirm', 'cancel'])
+>>>>>>> Stashed changes
 </script>
 
 <template>
-    <div class="container">
-        <button class="exit-btn">X</button>
-        <h3>Hov! Du er ved at forlade skemaet.</h3>
-        <h5>Du kan gemme nu, fortryde eller fortsætte.</h5>
-        <button class="continue-btn">Fortsæt</button>
-        <button class="cancel-btn">Fortryd</button>
-        <button class="save-btn">Gem nu</button>
+    <div v-if="visible" class="content">
+        <div class="container">
+            <button class="exit-btn" @click="$emit('cancel')">X</button>
+            <h3>Hov! Du er ved at forlade skemaet.</h3>
+            <h5>Du kan gemme nu, fortryde eller fortsætte.</h5>
+            <button class="continue-btn" @click="$emit('confirm')">Fortsæt</button>
+            <button class="cancel-btn" @click="$emit('cancel')">Fortryd</button>
+            <button class="save-btn" @click="$emit('confirm')">Gem nu</button>
+        </div>
     </div>
 </template>
 
 <style scoped>
+.content{
+    position: fixed;
+    inset: 0;
+    background-color: rgba(239, 239, 239, 0.75);
+    display: flex;
+    z-index: 9998;
+    align-items: center;
+    justify-content: center;
+}
 .container{
     margin-left: 10px;
     border: 2px solid grey;
@@ -24,6 +42,12 @@
     padding-left: 10px;
     border-radius: 5px;
     border-color: #ccbea0;
+    position: fixed;
+    top: 25%;
+    right: 0;
+    bottom: 0;
+    left: 25%;
+    z-index: 9999;
 }
 h3{
     color: #7a4d05;
@@ -44,6 +68,7 @@ h5{
     background: none;
     border: none;
     font-weight: bold;
+    cursor: pointer;
 }
 .continue-btn{
     position: relative;
@@ -53,6 +78,8 @@ h5{
     background-color: white;
     border: 2px solid #7a4d05;
     padding: 5px 10px;
+    cursor: pointer;
+    margin-right: 10px;
 }
 .cancel-btn{
     position: relative;
@@ -63,6 +90,7 @@ h5{
     background-color: white;
     border: 2px solid #7a4d05;
     padding: 5px 10px;
+    cursor: pointer;
 
 }
 .save-btn{
@@ -73,5 +101,6 @@ h5{
     margin-right: 20px;
     padding: 5px 10px;
     border: 2px solid #7a4d05;
+    cursor: pointer;
 }
 </style>

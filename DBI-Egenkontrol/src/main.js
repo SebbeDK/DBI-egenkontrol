@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import router from './router';
 import { faCalendarDays, faEllipsisV,faListUl,faGrip,faPlus, faFolderPlus, faArrowUp, faUser, faGear, faMagnifyingGlass, faArrowLeft, faAngleDown, faPrint, faUpDownLeftRight, faCirclePlus, faArrowsUpDownLeftRight, faTrashCan, faReply} from '@fortawesome/free-solid-svg-icons';
 import { faFile,faFolder, faCircle, faFloppyDisk, faPenToSquare, faCopy, faCircleQuestion } from '@fortawesome/free-regular-svg-icons';
-
+import { fas } from "@fortawesome/free-solid-svg-icons"
 
 // icons registered here.
 library.add(faCalendarDays);
@@ -35,7 +35,7 @@ library.add(faCopy);
 library.add(faCircleQuestion);
 library.add(faArrowsUpDownLeftRight);
 library.add(faReply)
-
+library.add(fas)
 
 
 

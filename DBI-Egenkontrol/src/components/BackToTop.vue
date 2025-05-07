@@ -1,8 +1,14 @@
 <script setup>
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    })
+}
 </script>
 
 <template>
-    <button class="to-top-btn">
+    <button class="to-top-btn" @click="scrollToTop">
         Tilbage til toppen
         <font-awesome-icon :icon="['fas', 'arrow-up']" />
     </button>
@@ -15,5 +21,6 @@
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     margin-left: 37rem;
+    cursor: pointer;
 }
 </style>

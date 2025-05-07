@@ -66,7 +66,6 @@ function addFolder() {
   folders.value.push({ title: "Ny Mappe", files: [] });
 }
 
-
 </script>
 
 <template>
@@ -131,7 +130,7 @@ function addFolder() {
     
     <div class="bottom-links"> 
         <see-more></see-more>
-        <back-to-top></back-to-top>
+        <BackToTop></BackToTop>
     </div>
 </template>
 

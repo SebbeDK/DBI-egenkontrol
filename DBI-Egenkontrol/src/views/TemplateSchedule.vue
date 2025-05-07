@@ -13,10 +13,11 @@
         </div>
         <div class="actions-control__line">
             <h3 class="schedule-info">ABA månedskontrol</h3>
-
+        <router-link to="/skemaer/skema/skabelon">
         <div class="actions">
             <button class="actions__btn"><font-awesome-icon :icon="['far', 'copy']" /> Kopier til egne skemaer </button>
         </div>
+        </router-link>
         </div>
     <div class="control-container">
         <div class="control">
@@ -106,6 +107,7 @@ h3{
     font-size: 13px;
     margin-left: 15px;
     color: white;
+    cursor: pointer;
 
 }
 .actions__btn svg{

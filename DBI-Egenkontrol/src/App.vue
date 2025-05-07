@@ -21,9 +21,11 @@
         </button>
         <input type="text" placeholder="Søg i skemaer">
       </div>
+      <router-link to="/skemaer/skabeloner">
       <div class="templates">
         <button>Tilgængelige skabeloner</button>
       </div>
+      </router-link>
       <div class="help">
         <h3>Har du brug for hjælp?</h3>
         <h5>Du kan finde svar på ofte stillede spørgsmål her.</h5>
@@ -120,6 +122,8 @@
   padding: 0.6rem;
   width: 100%;
   height: 100%;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .help {
@@ -218,5 +222,9 @@ cursor: pointer;
   color: white;
   font-size: 23px;
   margin-top: 0.2rem;
+}
+
+a{
+  text-decoration: none;
 }
 </style>

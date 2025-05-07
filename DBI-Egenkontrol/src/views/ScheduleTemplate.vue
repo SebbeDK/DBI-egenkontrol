@@ -1,4 +1,5 @@
 <script setup>
+<<<<<<< Updated upstream
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import FeedbackSuccess from '@/components/FeedbackSuccess.vue';
@@ -13,9 +14,48 @@ function save() {
           router.push('/skemaer')
       },5000)
 }
+=======
+import { ref } from 'vue';
+import { onBeforeRouteLeave, useRouter } from 'vue-router';
+import FeedbackError from '@/components/FeedbackError.vue';
+import SelectFormType from '@/components/SelectFormType.vue';
+
+const isSaved = ref(false)
+const showFeedbackError = ref(false)
+const pendingNavigation = ref(null)
+const router = useRouter()
+
+function confirmLeave() {
+    showFeedbackError.value = false
+    isSaved.value = true
+    if (pendingNavigation.value) {
+        router.push(pendingNavigation.value)
+    }
+}  
+
+function cancelLeave() {
+    showFeedbackError.value = false
+    pendingNavigation.value = null
+}
+
+onBeforeRouteLeave((to, from, next)=>{
+    if (!isSaved.value) {
+        showFeedbackError.value = true
+        pendingNavigation.value = to.fullPath
+        next(false)
+    } else {
+        next()
+    }
+})
+>>>>>>> Stashed changes
 </script>
 
 <template>
+    <feedback-error class="toast"
+    :visible="showFeedbackError"
+    @confirm="confirmLeave"
+    @cancel="cancelLeave"
+    />
     <div class="page-content">
     <div class="breadcrum">
             <h3 class="alm">Skemaer</h3>
@@ -26,7 +66,11 @@ function save() {
             <h3 class="schedule-info">ABA månedskontrol</h3>
 
         <div class="actions">
+<<<<<<< Updated upstream
             <button class="actions__btn" @click="save()"><font-awesome-icon :icon="['far', 'floppy-disk']" /> Gem</button>
+=======
+            <button class="actions__btn"><font-awesome-icon :icon="['far', 'floppy-disk']" @click="isSaved=true"/> Gem</button>
+>>>>>>> Stashed changes
             <button class="actions__btn"><font-awesome-icon :icon="['far', 'pen-to-square']" /> Rediger rettigheder</button>
             <button class="actions__btn"><font-awesome-icon :icon="['fas', 'print']" /> Print eller se skema</button>
         </div>
@@ -54,7 +98,11 @@ function save() {
     </button>
 
         <div class="save-schedule">
+<<<<<<< Updated upstream
             <button class="save-btn" @click="save()"><font-awesome-icon :icon="['far', 'floppy-disk']" /> Gem</button>
+=======
+            <button class="save-btn"><font-awesome-icon :icon="['far', 'floppy-disk']" @click="isSaved=true"/> Gem</button>
+>>>>>>> Stashed changes
         </div>
     </div>
     <FeedbackSuccess v-if="showSuccess"></FeedbackSuccess>
@@ -112,6 +160,7 @@ h3{
     color: white;
     margin-left: 32rem;
     margin-top: 3rem;
+    cursor: pointer;
 }
 
 .save-schedule svg{
@@ -179,6 +228,7 @@ h3{
     border: 2px solid #e2e2e2;
     font-size: 13px;
     margin-left: 15px;
+    cursor: pointer;
 
 }
 .actions__btn svg{
