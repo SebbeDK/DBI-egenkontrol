@@ -1,9 +1,8 @@
 <script setup>
-<<<<<<< Updated upstream
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { onBeforeRouteLeave, useRouter } from 'vue-router'
 import FeedbackSuccess from '@/components/FeedbackSuccess.vue';
-const router = useRouter()
+import SelectFormType from '@/components/SelectFormType.vue';
 
 const showSuccess = ref(false)
 
@@ -14,11 +13,6 @@ function save() {
           router.push('/skemaer')
       },5000)
 }
-=======
-import { ref } from 'vue';
-import { onBeforeRouteLeave, useRouter } from 'vue-router';
-import FeedbackError from '@/components/FeedbackError.vue';
-import SelectFormType from '@/components/SelectFormType.vue';
 
 const isSaved = ref(false)
 const showFeedbackError = ref(false)
@@ -47,7 +41,6 @@ onBeforeRouteLeave((to, from, next)=>{
         next()
     }
 })
->>>>>>> Stashed changes
 </script>
 
 <template>
@@ -66,11 +59,10 @@ onBeforeRouteLeave((to, from, next)=>{
             <h3 class="schedule-info">ABA månedskontrol</h3>
 
         <div class="actions">
-<<<<<<< Updated upstream
             <button class="actions__btn" @click="save()"><font-awesome-icon :icon="['far', 'floppy-disk']" /> Gem</button>
-=======
+
             <button class="actions__btn"><font-awesome-icon :icon="['far', 'floppy-disk']" @click="isSaved=true"/> Gem</button>
->>>>>>> Stashed changes
+
             <button class="actions__btn"><font-awesome-icon :icon="['far', 'pen-to-square']" /> Rediger rettigheder</button>
             <button class="actions__btn"><font-awesome-icon :icon="['fas', 'print']" /> Print eller se skema</button>
         </div>
@@ -98,11 +90,9 @@ onBeforeRouteLeave((to, from, next)=>{
     </button>
 
         <div class="save-schedule">
-<<<<<<< Updated upstream
             <button class="save-btn" @click="save()"><font-awesome-icon :icon="['far', 'floppy-disk']" /> Gem</button>
-=======
+
             <button class="save-btn"><font-awesome-icon :icon="['far', 'floppy-disk']" @click="isSaved=true"/> Gem</button>
->>>>>>> Stashed changes
         </div>
     </div>
     <FeedbackSuccess v-if="showSuccess"></FeedbackSuccess>

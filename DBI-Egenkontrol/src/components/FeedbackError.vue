@@ -1,13 +1,8 @@
 <script setup>
-<<<<<<< Updated upstream
-
-
-=======
 defineProps({
     visible: Boolean
 })
 defineEmits(['confirm', 'cancel'])
->>>>>>> Stashed changes
 </script>
 
 <template>
