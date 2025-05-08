@@ -1,9 +1,50 @@
 <script setup>
+import { ref, computed } from 'vue';
 import BackToTop from '../components/BackToTop.vue';
 import DisplayLayoutButtons from '../components/DisplayLayoutButtons.vue';
 import SeeMore from '../components/SeeMore.vue';
 import FileCard from '@/components/FileCard.vue';
 import SortFilter from '../components/SortFilter.vue';
+
+
+const templates = ref([
+    {
+        title: "ABA månedskontrol",
+        date: "21/2/2025",
+        uses: 25
+    },
+    {
+        title: "ABV-anlæg (Månedlig)",
+        date: "13/4/2025",
+        uses: 120
+    },
+    {
+        title: "ABV månedskontrol",
+        date: "02/11/2024",
+        uses: 32
+    }
+]);
+
+const sortBy = ref('none');
+
+const sortedTemplates = computed(() => {
+  let arr = [...templates.value];
+  if (sortBy.value === 'newest') {
+    arr.sort((a, b) => parseDate(b.date) - parseDate(a.date));
+  } else if (sortBy.value === 'oldest') {
+    arr.sort((a, b) => parseDate(a.date) - parseDate(b.date));
+  } else if (sortBy.value === 'mostUsed') {
+    arr.sort((a, b) => b.uses - a.uses);
+  }
+  return arr;
+});
+
+
+function parseDate(str) {
+  const [day, month, year] = str.split('/').map(Number);
+  return new Date(year, month - 1, day);
+}
+
 
 </script>
 
@@ -21,12 +62,14 @@ import SortFilter from '../components/SortFilter.vue';
             <h3>Tilgængelige skabeloner</h3>
         </div>
         <div class="sort-and-display">
-            <SortFilter></SortFilter>
+            <SortFilter @sort="sortBy = $event"></SortFilter>
             <display-layout-buttons></display-layout-buttons>
         </div>
         <div class="file-cards">
-            <FileCard :title="'ABA månedskontrol'"></FileCard>
-            <FileCard :title="'ABV-anlæg (Månedlig)'"></FileCard>
+            <FileCard v-for="template of sortedTemplates" 
+            :key="template.title" 
+            :title="template.title" 
+            :date="template.date"></FileCard>
         </div>
 
 

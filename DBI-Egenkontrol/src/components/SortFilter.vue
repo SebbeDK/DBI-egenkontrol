@@ -1,4 +1,9 @@
 <script setup>
+const emit = defineEmits(['sort']);
+
+function sort(type) {
+  emit('sort', type);
+}
 </script>
 
 <template>
@@ -8,11 +13,10 @@
         <font-awesome-icon class="icon" icon="fa-solid fa-angle-down" />
     </button>
     <div class="dropdown-content">
-        <a href="#">Vis alle</a>
-        <a href="#">Mest anvendte...</a>
-        <a href="#">Brand</a>
-        <a href="#">Institutioner</a>
-        <a href="#">Brand</a>
+      <button @click="sort('none')">Ingen filtrering</button>
+      <button @click="sort('newest')">Nyeste først</button>
+      <button @click="sort('oldest')">Ældste først</button>
+      <button @click="sort('mostUsed')">Mest anvendte</button>
     </div>
     </div>
 </template>
@@ -41,17 +45,19 @@
   text-align: center;
 }
 
-.dropdown-content a {
+.dropdown-content button {
   color: black;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
   border: 1px solid #d1d8d1;
+  width:100%;
 
 }
-.dropdown-content a:hover {
+.dropdown-content button:hover {
     background-color: darkgrey;
     color: white;
+    cursor:pointer;
 }
 
 .dropdown:hover .dropdown-content {
