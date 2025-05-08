@@ -28,6 +28,9 @@ function sort(type) {
   padding: 10px 25px;
   font-size: 16px;
   border: 1px solid;
+  border: 2px solid rgb(192, 189, 189);
+  border-radius: 5px;
+  cursor:pointer;
 }
 
 .dropdown {

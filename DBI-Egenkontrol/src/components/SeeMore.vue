@@ -11,5 +11,6 @@
     background-color: white;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
+    cursor:pointer;
 }
 </style>

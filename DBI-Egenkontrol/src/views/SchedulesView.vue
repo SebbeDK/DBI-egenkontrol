@@ -7,7 +7,7 @@ import FileCard from '../components/FileCard.vue'
 import FolderBtn from '../components/FolderBtn.vue'
 import NewFolder from '../components/NewFolder.vue';
 import SeeMore from '../components/SeeMore.vue';
-import SelectOption from '../components/SelectOption.vue';
+import SortFilter from '../components/SortFilter.vue';
 
 const selectedFolderIndex = ref(null);
 
@@ -25,7 +25,8 @@ const folders = ref([
         files: [
             {
                 title: "Dansk",
-                date: "21/1/2025"
+                date: "21/1/2025",
+                uses: 34
             }
         ]
     },
@@ -34,11 +35,13 @@ const folders = ref([
         files: [
             {
                 title: "Månedskontrol",
-                date: "1/2/2025"
+                date: "1/2/2025",
+                uses: 55
             },
             {
                 title: "AIA",
-                date: "10/2/2025"
+                date: "10/2/2025",
+                uses: 12
             }
         ]
     },
@@ -66,14 +69,36 @@ function addFolder() {
   folders.value.push({ title: "Ny Mappe", files: [] });
 }
 
+const sortBy = ref('none');
+
+const sortedFiles = computed(() => {
+  if (selectedFolderIndex.value === null) return [];
+  const files = folders.value[selectedFolderIndex.value].files || [];
+  let arr = [...files];
+  if (sortBy.value === 'newest') {
+    arr.sort((a, b) => parseDate(b.date) - parseDate(a.date));
+  } else if (sortBy.value === 'oldest') {
+    arr.sort((a, b) => parseDate(a.date) - parseDate(b.date));
+  } else if (sortBy.value === 'mostUsed') {
+    arr.sort((a, b) => b.uses - a.uses);
+  }
+  return arr;
+});
+
+
+
+function parseDate(str) {
+  const [day, month, year] = str.split('/').map(Number);
+  return new Date(year, month - 1, day);
+}
+
 </script>
 
 <template>
     <h3>Skemaer</h3>
     <div class="flex-container">
-        <form action="">
-          <select-option></select-option>
-        </form>
+        <SortFilter @sort="sortBy = $event"></SortFilter>
+
         <display-layout-buttons></display-layout-buttons>
       <new-folder @click="addFolder"></new-folder>
     </div>
@@ -117,12 +142,13 @@ function addFolder() {
 
             <!-- viser filer i den valgte mappe-->
             <template v-if="selectedFolderIndex !== null">
-            <FileCard
-                v-for="file in folders[selectedFolderIndex].files"
-                :key="file.title"
-                :title="file.title"
-                :date="file.date"
-            />
+                <FileCard
+                    v-for="file in sortedFiles"
+                    :key="file.title"
+                    :title="file.title"
+                    :date="file.date"
+                    />
+
             </template>
         </div>
         </div>
@@ -149,6 +175,9 @@ h3{
     display: flex;
 }
 
+.flex-container .dropdown{
+    margin-left: 1.5rem;
+}
 .file-containers{
     border: none;
     margin-left: 1.5rem;
