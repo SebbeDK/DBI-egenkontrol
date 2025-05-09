@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import { onBeforeRouteLeave, useRouter } from 'vue-router'
 import FeedbackSuccess from '@/components/FeedbackSuccess.vue';
 import SelectFormType from '@/components/SelectFormType.vue';
+import YesOrNoQuestion from '@/components/YesOrNoQuestion.vue';
 
 const showSuccess = ref(false)
 
@@ -41,6 +42,13 @@ onBeforeRouteLeave((to, from, next)=>{
         next()
     }
 })
+let qIndex = ref(1)
+const questions = ref([{qIndex: 1},])
+
+function addQuestion() {
+    qIndex += 1
+    questions.value.push({qIndex: qIndex.value})
+} 
 </script>
 
 <template>
@@ -60,39 +68,17 @@ onBeforeRouteLeave((to, from, next)=>{
 
         <div class="actions">
             <button class="actions__btn" @click="save()"><font-awesome-icon :icon="['far', 'floppy-disk']" /> Gem</button>
-
-            <button class="actions__btn"><font-awesome-icon :icon="['far', 'floppy-disk']" @click="isSaved=true"/> Gem</button>
-
             <button class="actions__btn"><font-awesome-icon :icon="['far', 'pen-to-square']" /> Rediger rettigheder</button>
             <button class="actions__btn"><font-awesome-icon :icon="['fas', 'print']" /> Print eller se skema</button>
         </div>
         </div>
 
-    <div class="control-container">
-        <div class="control-container__control">
-            <button>
-            <font-awesome-icon :icon="['far', 'pen-to-square']" />
-        </button>
-        <button>
-            <font-awesome-icon :icon="['fas', 'up-down-left-right']" />
-        </button>
-        <button>
-            <font-awesome-icon :icon="['fas', 'trash-can']"/>
-        </button>
-        </div>
-        <div class="control">
-            <input class="control__checkbox" type="checkbox" name="" id="">
-            <label class="control__label" for="">Anlæggets detektorer, sprinklere og dyser er ubeskadigede</label>
-        </div>
+   <div 
+   v-for="(question, qIndex) in questions" :key="question.qIndex">
+   <YesOrNoQuestion @newQuestion="addQuestion"/>
     </div>
-    <button class="add">
-        <font-awesome-icon :icon="['fas', 'circle-plus']" />
-    </button>
-
         <div class="save-schedule">
             <button class="save-btn" @click="save()"><font-awesome-icon :icon="['far', 'floppy-disk']" /> Gem</button>
-
-            <button class="save-btn"><font-awesome-icon :icon="['far', 'floppy-disk']" @click="isSaved=true"/> Gem</button>
         </div>
     </div>
     <FeedbackSuccess v-if="showSuccess"></FeedbackSuccess>
@@ -157,59 +143,6 @@ h3{
     color: white;
     margin-right: none;
     font-size: 20px;
-}
-
-.control{
-    border: 2px solid #e2e2e2;
-    background-color: #f7f7f7;
-    border-radius: 5px;
-    width: 25rem;
-    padding: 40px;
-    display: flex;
-    margin-left: 2rem;
-}
-
-.control__checkbox{
-    height: 40px;
-    width: 30px;
-}
-
-
-.control__checkbox, label {
-    font-family: Arial, Helvetica, sans-serif;
-    margin-left: 1rem;
-    font-size: 17px;
-    line-height: 18px;
-}
-
-.control-container{
-    display: flex;
-    position: relative;
-}
-
-.control-container__control{
-    display: flex;
-    flex-direction: column;
-    position:absolute;
-    top: 50%;
-    left: 10px;
-    transform: translate(-50%,-50%);
-
-}
-.control-container__control button{
-    border: none;
-    background-color: white;
-    margin-top: 0.5rem;
-    font-size: 25px;
-}
-
-.add {
-    margin-left: 15rem;
-    border: none;
-    background-color: white;
-    margin-top: 0.5rem;
-    font-size: 25px;
-
 }
 
 .actions__btn{
