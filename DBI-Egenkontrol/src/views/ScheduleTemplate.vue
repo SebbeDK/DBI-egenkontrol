@@ -4,6 +4,10 @@ import { onBeforeRouteLeave, useRouter } from 'vue-router'
 import FeedbackSuccess from '@/components/FeedbackSuccess.vue';
 import SelectFormType from '@/components/SelectFormType.vue';
 import YesOrNoQuestion from '@/components/YesOrNoQuestion.vue';
+import SaveButton from '@/components/SaveButton.vue';
+import EditRights from '@/components/EditRights.vue';
+import PrintSeeModel from '@/components/PrintSeeModel.vue';
+import ShortBreadcrumbsString from '@/components/ShortBreadcrumbsString.vue';
 
 const showSuccess = ref(false)
 
@@ -52,17 +56,16 @@ function addQuestion() {
 </script>
 
 <template>
+    <SaveButton/>
+    <EditRights/>
+    <PrintSeeModel/>
     <feedback-error class="toast"
     :visible="showFeedbackError"
     @confirm="confirmLeave"
     @cancel="cancelLeave"
     />
     <div class="page-content">
-    <div class="breadcrum">
-            <h3 class="alm">Skemaer</h3>
-            <font-awesome-icon :icon="['far', 'circle']" />
-            <h3>Skema</h3>
-        </div>
+    <ShortBreadcrumbsString/>
         <div class="actions-control__line">
             <h3 class="schedule-info">ABA månedskontrol</h3>
 
@@ -85,15 +88,6 @@ function addQuestion() {
 </template>
 
 <style scoped>
-.breadcrum{
-    display: flex;
-    margin: 0 0 2rem 0;
-}
-.breadcrum svg{
-    margin: 0.5rem 1rem;
-    font-size: 10px;
-}
-
 .go-back{
     display: flex;
     font-family: Arial, Helvetica, sans-serif;

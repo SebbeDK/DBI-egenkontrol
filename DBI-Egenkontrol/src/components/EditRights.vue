@@ -18,17 +18,13 @@
     border: 1px solid grey;
     border-radius: 10px;
     width: 9rem;
-    padding-left: 0.5rem;
     cursor: pointer;
+    
 }
-.actions__btn svg{
-    font-size: 1rem;
-    margin-left: 0.2rem;
+.actions__btn:hover{
+    background-color: #d1d8d1;
+
 }
 
-.actions-control__line{
-    display: flex;
-    justify-content: space-between;
-    width: 40rem;
-}
+
 </style>

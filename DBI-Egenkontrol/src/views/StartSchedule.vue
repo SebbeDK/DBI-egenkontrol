@@ -67,8 +67,8 @@ h3{
 
 .actions{
     display: flex;
-    height: 2rem; 
-    margin-top: -3rem; 
+    height: 3.5rem; 
+    margin-bottom: 3rem; 
     margin-left: 27rem;  
 }
 

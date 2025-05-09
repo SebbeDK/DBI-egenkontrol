@@ -1,24 +1,19 @@
 <script setup>
-
+import LongBreadcrumbsStringALT from '@/components/LongBreadcrumbsStringALT.vue';
+import CopyToOwnModel from '@/components/CopyToOwnModel.vue';
 </script>
 
 <template>
     <div class="page-content">
-    <div class="breadcrum">
-            <h3 class="alm">Skemaer</h3>
-            <font-awesome-icon :icon="['far', 'circle']" />
-            <h3 class="alm">Tilgængelige skabeloner</h3>
-            <font-awesome-icon :icon="['far', 'circle']" />
-            <h3>Skema</h3>
-        </div>
+        <long-breadcrumbs-string-a-l-t/>
         <div class="actions-control__line">
             <h3 class="schedule-info">ABA månedskontrol</h3>
-        <router-link to="/skemaer/skema/skabelon">
-        <div class="actions">
-            <button class="actions__btn"><font-awesome-icon :icon="['far', 'copy']" /> Kopier til egne skemaer </button>
+        <div class="link">
+            <router-link to="/skemaer/skema/skabelon">
+            <copy-to-own-model/>
+            </router-link>
         </div>
-        </router-link>
-        </div>
+    </div>
     <div class="control-container">
         <div class="control">
             <input class="control__checkbox" type="checkbox" name="" id="">
@@ -30,28 +25,9 @@
 </template>
 
 <style scoped>
-
-.breadcrum{
-    display: flex;
-    margin: 0 0 2rem 0;
-}
-.breadcrum svg{
-    margin: 0.5rem 1rem;
-    font-size: 10px;
-}
-
-h5{
-    font-weight: lighter;
-}
-
 h3{
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
-}
-
-.alm {
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: lighter;
 }
 
 .schedule-info{

@@ -20,6 +20,8 @@ font-size: 15px;
 cursor: pointer;
 }
 
-
+.card:hover{
+    background-color: #d1d8d1;
+}
 
 </style>
