@@ -18,7 +18,7 @@ p{
 .breadcrumbs{
     display: flex;
     align-items: center;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "League Spartan";
 
 }
 

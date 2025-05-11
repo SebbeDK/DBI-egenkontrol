@@ -77,7 +77,7 @@ function addQuestion() {
         </div>
 
    <div 
-   v-for="(question, qIndex) in questions" :key="question.qIndex">
+   v-for="(question) in questions" :key="question.qIndex">
    <YesOrNoQuestion @newQuestion="addQuestion"/>
     </div>
         <div class="save-schedule">
@@ -90,7 +90,7 @@ function addQuestion() {
 <style scoped>
 .go-back{
     display: flex;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "League Spartan";
     margin: 0;
 
 }
@@ -104,12 +104,12 @@ h5{
 }
 
 h3{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "League Spartan";
     margin: 0;
 }
 
 .alm {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "League Spartan";
     font-weight: lighter;
 }
 
@@ -122,7 +122,7 @@ h3{
 
 .save-btn{
     background-color:#257473;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "League Spartan";
     border: none;
     border-radius: 15px;
     padding: 10px 20px 10px 20px;

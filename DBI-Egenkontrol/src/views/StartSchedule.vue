@@ -52,7 +52,7 @@ function save() {
 }
 
 h3{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "League Spartan";
     margin: 0;
 }
 
@@ -80,7 +80,7 @@ h3{
 
 .go-back{
     display: flex;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "League Spartan";
     margin: 0;
     height: 3rem;
 

@@ -88,12 +88,12 @@ h5{
 }
 
 h3{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "League Spartan";
     margin: 0;
 }
 
 .alm {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "League Spartan";
     font-weight: lighter;
 }
 
@@ -106,7 +106,7 @@ h3{
 
 .save-btn{
     background-color:#257473;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "League Spartan";
     border: none;
     border-radius: 15px;
     padding: 10px 20px 10px 20px;
@@ -135,7 +135,7 @@ h3{
 }
 
 select{
-width: 15rem;
+    width: 15rem;
 }
 
 .widget{
@@ -166,7 +166,7 @@ width: 15rem;
 }
 
 .widget__info p{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "League Spartan";
     font-size: 2px;
 }
 

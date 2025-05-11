@@ -19,7 +19,7 @@ width: 4rem;
 padding-right: 1rem;
 align-items: center;
 cursor: pointer;
-font-family: Arial, Helvetica, sans-serif;
+font-family: "League Spartan";
 font-size: 15px;
 color: black;
 }

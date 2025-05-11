@@ -20,7 +20,7 @@ border: 1px solid grey;
 border-radius: 10px;
 width: 13rem;
 padding-left: 0.5rem;
-font-family: Arial, Helvetica, sans-serif;
+font-family: "League Spartan";
 
 }
 a{

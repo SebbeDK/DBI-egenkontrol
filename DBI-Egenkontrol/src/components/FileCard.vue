@@ -32,7 +32,7 @@ defineProps({
   width: 9rem;
   position: relative;
   color: white;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "League Spartan";
 }
 
 .file-card-icon{

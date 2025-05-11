@@ -24,7 +24,7 @@ padding: 1rem;
 padding-left: 2rem;
 cursor: pointer;
 font-size: 15px;
-font-family: Arial, Helvetica, sans-serif;
+font-family: "League Spartan";
 
 }
 .container:hover{

@@ -19,7 +19,7 @@ function scrollToTop() {
     border: none;
     background-color: white;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "League Spartan";
     margin-left: 37rem;
     cursor: pointer;
 }

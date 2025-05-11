@@ -57,7 +57,7 @@ function handleLogin() {
     padding: 2rem;
     border: 2px solid #9dbfb4;
     border-radius: 8px;
-    font-family: arial;
+    font-family: "League Spartan";
     justify-content:center;
     align-items: center;
     display:flex;

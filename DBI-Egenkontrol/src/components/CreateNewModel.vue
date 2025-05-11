@@ -15,7 +15,7 @@ border-radius: 10px;
 width: 15rem;
 padding: 1rem;
 padding-left: 2rem;
-font-family:Arial, Helvetica, sans-serif;
+font-family:"League Spartan";
 font-size: 15px;
 cursor: pointer;
 }

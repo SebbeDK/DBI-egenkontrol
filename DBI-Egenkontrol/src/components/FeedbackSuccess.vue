@@ -35,12 +35,12 @@
 h3{
     color: #4a7435;
     margin: 10px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "League Spartan";
 }
 h5{
     color: #a8c599;
     margin: 10px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "League Spartan";
     font-weight: 100;
 }
 .exit-btn{

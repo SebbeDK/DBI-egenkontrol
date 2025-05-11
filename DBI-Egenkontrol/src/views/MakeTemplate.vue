@@ -97,12 +97,12 @@ function parseDate(str) {
 }
 
 h3{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "League Spartan";
     margin: 0;
 }
 
 .alm {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "League Spartan";
     font-weight: lighter;
 }
 select{
@@ -124,7 +124,7 @@ select{
 
 .go-back{
     display: flex;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "League Spartan";
     margin: 0;
 
 }

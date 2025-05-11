@@ -10,7 +10,7 @@
     border: none;
     background-color: white;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "League Spartan";
     cursor:pointer;
 }
 </style>

@@ -167,7 +167,7 @@ function parseDate(str) {
 }
 
 h3{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "League Spartan";
     margin: 3rem 1.5rem 3rem;
 }
 
@@ -184,7 +184,7 @@ h3{
 }
 
 .file-containers, h4{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "League Spartan";
     font-weight: lighter;
     color: #bababa;
     font-size: 19px;

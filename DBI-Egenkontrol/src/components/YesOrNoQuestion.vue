@@ -64,7 +64,7 @@
 
 
 .control__checkbox, label {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "League Spartan";
     margin-left: 1rem;
     font-size: 17px;
     line-height: 18px;

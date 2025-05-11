@@ -22,14 +22,14 @@ width: 14rem;
 height: 17rem;
 }
 h3{
-font-family:Arial, Helvetica, sans-serif;
+font-family:"League Spartan";
 font-size: 22px;
 padding: 1rem 2rem 0rem 2rem;
 margin-bottom: 3px;
 }
 
 h5{
-font-family:Arial, Helvetica, sans-serif;
+font-family:"League Spartan";
 font-weight:lighter;
 font-size: 16px;
 margin-bottom: 20px;
@@ -47,7 +47,7 @@ margin: 40px 0px 20px 125px;
 height: 1.5rem;
 width: 4rem;
 text-align: center;
-font-family:Arial, Helvetica, sans-serif;
+font-family:"League Spartan";
 font-weight: lighter;
 
 }

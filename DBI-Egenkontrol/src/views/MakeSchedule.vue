@@ -71,7 +71,7 @@
 
 .go-back{
     display: flex;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "League Spartan";
     margin: 0;
 
 }
@@ -85,12 +85,12 @@ h5{
 }
 
 h3{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "League Spartan";
     margin: 0;
 }
 
 .alm {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "League Spartan";
     font-weight: lighter;
 }
 
@@ -104,7 +104,7 @@ h3{
 .select-items{
     display: flex;
     flex-direction: column;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "League Spartan";
 }
 
 .select-items select{
@@ -123,7 +123,7 @@ h3{
 
 .cancel-btn{
     background-color:#f3f4f3;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "League Spartan";
     border: none;
     border-radius: 20px;
     padding: 15px 40px 15px 40px;
@@ -132,7 +132,7 @@ h3{
 
 .next-btn{
     background-color:#257473;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "League Spartan";
     border: none;
     border-radius: 20px;
     padding: 15px 40px 15px 40px;
@@ -147,7 +147,7 @@ h3{
 }
 
 .name-label, .select-items__label{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "League Spartan";
     margin-bottom: 1rem;
     font-size: 30px;
     font-weight: lighter;
@@ -168,7 +168,7 @@ h3{
 .permissions{
     display: flex;
     flex-direction: column;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "League Spartan";
 }
 .permissions div{
     display: flex;
