@@ -2,26 +2,26 @@
 </script>
 
 <template>
-    <button class="actions__btn">
+    <button class="edit__btn">
     <font-awesome-icon :icon="['far', 'pen-to-square']" />
     Rediger rettigheder
     </button>
 </template>
 
 <style scoped>
-.actions__btn{
+.edit__btn{
     padding: 10px;
     border-radius: 10px;
     font-size: 14px;
-    margin-left: 15px;
     background-color: #f3f4f3;
     border: 1px solid grey;
     border-radius: 10px;
-    width: 9rem;
+    width: 10rem;
     cursor: pointer;
+    font-family: "League Spartan";
     
 }
-.actions__btn:hover{
+.edit__btn:hover{
     background-color: #d1d8d1;
 
 }

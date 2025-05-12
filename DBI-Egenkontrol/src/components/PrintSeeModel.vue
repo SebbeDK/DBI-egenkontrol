@@ -18,6 +18,7 @@ width: 12rem;
 padding-left: 0.5rem;
 align-items: center;
 justify-content: space-evenly;
+cursor: pointer;
 }
 .container:hover{
 background-color: #d1d8d1

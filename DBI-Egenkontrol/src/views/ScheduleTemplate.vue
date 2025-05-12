@@ -52,13 +52,15 @@ const questions = ref([{qIndex: 1},])
 function addQuestion() {
     qIndex += 1
     questions.value.push({qIndex: qIndex.value})
-} 
+}
+
+function removeQuestion(index) {
+    questions.value.splice(index, 1)
+}
+
 </script>
 
 <template>
-    <SaveButton/>
-    <EditRights/>
-    <PrintSeeModel/>
     <feedback-error class="toast"
     :visible="showFeedbackError"
     @confirm="confirmLeave"
@@ -76,10 +78,15 @@ function addQuestion() {
         </div>
         </div>
 
-   <div 
-   v-for="(question) in questions" :key="question.qIndex">
-   <YesOrNoQuestion @newQuestion="addQuestion"/>
+   <div v-for="(question, index) in questions" :key="question.qIndex">
+   <YesOrNoQuestion 
+   :key="question.qIndex"
+   @newQuestion="addQuestion"
+   @deleteQuestion="removeQuestion(index)"/>
     </div>
+    <button v-if="questions.length === 0" @click="addQuestion" class="add">
+        <font-awesome-icon :icon="['fas', 'circle-plus']" />
+    </button>
         <div class="save-schedule">
             <button class="save-btn" @click="save()"><font-awesome-icon :icon="['far', 'floppy-disk']" /> Gem</button>
         </div>
@@ -157,5 +164,12 @@ h3{
     justify-content: space-between;
     width: 52rem;
 }
-
+.add {
+    margin-left: 15rem;
+    border: none;
+    background-color: white;
+    margin-top: 0.5rem;
+    font-size: 25px;
+    cursor: pointer;
+}
 </style>

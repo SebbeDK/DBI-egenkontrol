@@ -1,22 +1,37 @@
 <script setup>
+import { ref } from 'vue'
+
+const questionString = ref("Anlæggets detektorer, sprinklere og dyser er ubeskadigede")
+const isEditing = ref(false)
+
+function startEdit() {
+    isEditing.value = true
+}
+
+function stopEdit() {
+    isEditing.value = false
+}
+
 </script>
 
 <template>
  <div class="control-container">
         <div class="control-container__control">
-            <button>
+            <button @click="startEdit">
             <font-awesome-icon :icon="['far', 'pen-to-square']" />
         </button>
         <button>
             <font-awesome-icon :icon="['fas', 'up-down-left-right']" />
         </button>
-        <button>
+        <button @click="$emit('deleteQuestion')">
             <font-awesome-icon :icon="['fas', 'trash-can']"/>
         </button>
         </div>
         <div class="control">
             <input class="control__checkbox" type="checkbox" name="" id="">
-            <label class="control__label" for="">Anlæggets detektorer, sprinklere og dyser er ubeskadigede</label>
+            <label class="control__label" v-if="!isEditing"> {{ questionString }}</label>
+
+            <input v-else class="control_label" v-model="questionString" @blur="stopEdit" @keyup.enter="stopEdit">
         </div>
     </div>
     <button class="add" @click="$emit('newQuestion')">
@@ -54,6 +69,7 @@
     padding: 40px;
     display: flex;
     margin-left: 2rem;
+    align-items: center;
 }
 
 .control__checkbox{
