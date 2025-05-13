@@ -187,7 +187,7 @@ h3{
     font-family: "League Spartan";
     font-weight: lighter;
     color: #bababa;
-    font-size: 19px;
+    font-size: 24px;
 }
 
 .file-containers button, .file-containers input{

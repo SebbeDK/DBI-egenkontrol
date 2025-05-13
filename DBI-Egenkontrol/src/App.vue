@@ -67,7 +67,7 @@
   min-height: 100vh;
 }
 .sidebar__logo {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "league spartan";
   font-weight: bold;
   background-color: #9dbfb4;
   color: white;
@@ -137,7 +137,7 @@ width: 10.5rem;
 }
 
 h3{
-font-family:Arial, Helvetica, sans-serif;
+font-family: "league spartan";
 font-weight:medium;
 font-size: 22px;
 padding: 1rem;
@@ -146,7 +146,7 @@ margin-bottom: 3px;
 
 h5{
 padding: 1rem;
-font-family:Arial, Helvetica, sans-serif;
+font-family: "league spartan";
 font-weight:lighter;
 font-size: 16px;
 }
@@ -165,7 +165,7 @@ cursor: pointer;
 }
 
 .horizontal-menu{
-  border-bottom: 3px solid hsl(161, 21%, 68%);
+  border-bottom: 3px solid #9dbfb4;
   padding: 1rem 1rem;
   display: flex;
   justify-content: space-between;
@@ -173,7 +173,7 @@ cursor: pointer;
 
 .horizontal-menu a{
   color: #9dbfb4;
-  font-family:Arial, Helvetica, sans-serif;
+  font-family: "league spartan";
   font-weight: light;
   text-decoration: none;
   padding: 0.5rem;
@@ -190,7 +190,7 @@ cursor: pointer;
 .horizontal-menu a.router-link-active::after {
   content: '';
   position: absolute;
-  left: 0;
+  left: 25%;
   bottom: -3px;
   width: 50%;
   height: 3px;

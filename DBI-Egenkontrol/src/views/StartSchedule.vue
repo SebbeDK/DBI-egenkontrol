@@ -61,7 +61,7 @@ h3{
     border-bottom: 2px solid #9dbfb4;
     display: inline-block;
     padding-bottom: 0.5rem;
-    margin-bottom: 3rem;
+    margin-bottom: 5rem;
     font-weight: 1000;
 }
 

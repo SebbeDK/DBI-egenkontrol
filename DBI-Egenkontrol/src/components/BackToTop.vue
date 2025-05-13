@@ -18,7 +18,8 @@ function scrollToTop() {
 .to-top-btn{
     border: none;
     background-color: white;
-    font-weight: bold;
+    font-weight: medium;
+    font-size: 22px;
     font-family: "League Spartan";
     margin-left: 37rem;
     cursor: pointer;

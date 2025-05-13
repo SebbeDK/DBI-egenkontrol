@@ -22,6 +22,9 @@ cursor: pointer;
 font-family: "League Spartan";
 font-size: 15px;
 color: black;
+height: 2.5rem;
+margin-right: 1rem;
+gap: 0.5rem;
 }
 
 .save-button:hover{

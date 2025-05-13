@@ -9,8 +9,9 @@
 .see-more-btn {
     border: none;
     background-color: white;
-    font-weight: bold;
+    font-weight: medium;
     font-family: "League Spartan";
     cursor:pointer;
+    font-size: 22px;
 }
 </style>
