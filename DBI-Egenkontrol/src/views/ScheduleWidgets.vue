@@ -2,6 +2,11 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import FeedbackSuccess from '@/components/FeedbackSuccess.vue';
+import SaveButton from '@/components/SaveButton.vue';
+import EditRights from '@/components/EditRights.vue';
+import PrintSeeModel from '@/components/PrintSeeModel.vue';
+import ShortBreadcrumbsString from '@/components/ShortBreadcrumbsString.vue';
+import SelectFormType from '@/components/SelectFormType.vue';
 const router = useRouter()
 
 
@@ -18,18 +23,14 @@ function save() {
 
 <template>
     <div class="page-content">
-    <div class="breadcrum">
-            <h3 class="alm">Skemaer</h3>
-            <font-awesome-icon :icon="['far', 'circle']" />
-            <h3>Skema</h3>
-        </div>
+    <ShortBreadcrumbsString/>
         <div class="actions-control__line">
             <h3 class="schedule-info">ABA månedskontrol</h3>
 
         <div class="actions">
-            <button class="actions__btn" @click="save()"><font-awesome-icon :icon="['far', 'floppy-disk']" /> Gem</button>
-            <button class="actions__btn"><font-awesome-icon :icon="['far', 'pen-to-square']" /> Rediger rettigheder</button>
-            <button class="actions__btn"><font-awesome-icon :icon="['fas', 'print']" /> Print eller se skema</button>
+            <SaveButton class="actions__btn" @click="save()"/>
+            <EditRights class="actions__btn"/>
+            <PrintSeeModel class="actions__btn"/>
         </div>
         </div>
 
@@ -210,14 +211,18 @@ select{
 }
 
 .actions__btn{
-    padding: 10px;
     border-radius: 10px;
     border: 2px solid #e2e2e2;
     font-size: 13px;
     margin-left: 15px;
     cursor: pointer;
-
+    height: 2.5rem;
 }
+.actions{
+    display: flex;
+    height: 3rem;
+}
+
 .actions__btn svg{
     font-size: 18px;
 }

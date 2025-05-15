@@ -50,10 +50,12 @@ function parseDate(str) {
 
 <template>
     <div class="page-content">
-        <div class="go-back">
-            <font-awesome-icon :icon="['fas', 'arrow-left']" />
-            <h5>Tilbage til dine skemaer</h5>
-        </div>
+        <router-link to="/skemaer/skema/start">
+            <div class="go-back">
+                <font-awesome-icon :icon="['fas', 'arrow-left']" />
+                <h5>Tilbage til dine skemaer</h5>
+            </div>
+        </router-link>
         <div class="breadcrum">
             <h3 class="alm">Skemaer</h3>
             <font-awesome-icon :icon="['far', 'circle']" />
@@ -65,12 +67,14 @@ function parseDate(str) {
             <SortFilter @sort="sortBy = $event"></SortFilter>
             <display-layout-buttons></display-layout-buttons>
         </div>
-        <div class="file-cards">
-            <FileCard v-for="template of sortedTemplates" 
-            :key="template.title" 
-            :title="template.title" 
-            :date="template.date"></FileCard>
-        </div>
+        <router-link to="/skemaer/skema/skabelonskema">
+            <div class="file-cards">
+                <FileCard v-for="template of sortedTemplates" 
+                :key="template.title" 
+                :title="template.title" 
+                :date="template.date"></FileCard>
+            </div>
+        </router-link>
 
 
         <div>
@@ -82,7 +86,10 @@ function parseDate(str) {
 </template>
 
 <style scoped>
-
+a{
+    text-decoration: none;
+    color: black;
+}
 .file-cards{
   display: flex;
   margin: 3rem 0;

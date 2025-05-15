@@ -2,16 +2,16 @@
 import { ref } from 'vue'
 import { onBeforeRouteLeave, useRouter } from 'vue-router'
 import FeedbackSuccess from '@/components/FeedbackSuccess.vue';
-import SelectFormType from '@/components/SelectFormType.vue';
 import YesOrNoQuestion from '@/components/YesOrNoQuestion.vue';
 import SaveButton from '@/components/SaveButton.vue';
 import EditRights from '@/components/EditRights.vue';
 import PrintSeeModel from '@/components/PrintSeeModel.vue';
 import ShortBreadcrumbsString from '@/components/ShortBreadcrumbsString.vue';
+import FeedbackError from '@/components/FeedbackError.vue';
 
 const showSuccess = ref(false)
-
 function save() {
+    isSaved.value = true,
     showSuccess.value = true;
 
     setTimeout(() => {
@@ -72,9 +72,9 @@ function removeQuestion(index) {
             <h3 class="schedule-info">ABA månedskontrol</h3>
 
         <div class="actions">
-            <button class="actions__btn" @click="save()"><font-awesome-icon :icon="['far', 'floppy-disk']" /> Gem</button>
-            <button class="actions__btn"><font-awesome-icon :icon="['far', 'pen-to-square']" /> Rediger rettigheder</button>
-            <button class="actions__btn"><font-awesome-icon :icon="['fas', 'print']" /> Print eller se skema</button>
+            <SaveButton @click="save()" class="actions__btn" id="save__button"/>
+            <EditRights class="actions__btn"/>
+            <PrintSeeModel class="actions__btn"/>
         </div>
         </div>
 
@@ -147,16 +147,18 @@ h3{
 }
 
 .actions__btn{
-    padding: 10px;
     border-radius: 10px;
     border: 2px solid #e2e2e2;
     font-size: 13px;
-    margin-left: 15px;
     cursor: pointer;
-
+    margin: 0px 0.5rem;   
 }
 .actions__btn svg{
     font-size: 18px;
+}
+.actions{
+    display: flex;
+    height: 2.5rem;
 }
 
 .actions-control__line{
@@ -172,4 +174,5 @@ h3{
     font-size: 25px;
     cursor: pointer;
 }
+
 </style>

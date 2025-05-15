@@ -17,7 +17,7 @@ function stopEdit() {
 <template>
  <div class="control-container">
         <div class="control-container__control">
-            <button @click="startEdit">
+        <button @click="startEdit">
             <font-awesome-icon :icon="['far', 'pen-to-square']" />
         </button>
         <button>

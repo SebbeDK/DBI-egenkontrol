@@ -25,6 +25,10 @@ import CopyToOwnModel from '@/components/CopyToOwnModel.vue';
 </template>
 
 <style scoped>
+a{
+    text-decoration: none;
+}
+
 h3{
     font-family: "League Spartan";
     margin: 0;

@@ -9,10 +9,12 @@ import SortFilter from '../components/SortFilter.vue';
 
 <template>
     <div class="page-content">
-        <div class="go-back">
-            <font-awesome-icon :icon="['fas', 'arrow-left']" />
-            <h5>Tilbage til dine skemaer</h5>
-        </div>
+        <router-link to="/skemaer/skema/start">
+            <div class="go-back">
+                <font-awesome-icon :icon="['fas', 'arrow-left']" />
+                <h5>Tilbage til dine skemaer</h5>
+            </div>
+        </router-link>
         <div class="breadcrum">
             <h3 class="alm">Skemaer</h3>
             <font-awesome-icon :icon="['far', 'circle']" />
@@ -23,7 +25,9 @@ import SortFilter from '../components/SortFilter.vue';
             <display-layout-buttons></display-layout-buttons>
         </div>
         <div class="file-cards">
-            <FileCard :title="'ABA månedskontrol'"></FileCard>
+            <router-link to="/skemaer/skema/skabelon">
+                <FileCard :title="'ABA månedskontrol'"></FileCard>
+            </router-link>
             <FileCard :title="'ABV-anlæg (Månedlig)'"></FileCard>
         </div>
 
@@ -36,6 +40,11 @@ import SortFilter from '../components/SortFilter.vue';
 </template>
 
 <style scoped>
+a{
+    text-decoration: none;
+    color: black;
+    margin-right: 25px; 
+}
 
 .file-cards{
   display: flex;

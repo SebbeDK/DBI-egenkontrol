@@ -4,11 +4,15 @@
 <template>
 <span>
 <div class="icons-list">
-    <font-awesome-icon class="icon" icon="far fa-copy" />
-    <br>
-    <font-awesome-icon class="icon" icon="fas fa-arrows-up-down-left-right" />
-    <br>
-    <font-awesome-icon class="icon" icon="fas fa-trash-can" />
+    <button>
+        <font-awesome-icon class="icon" icon="far fa-copy" />
+    </button>
+    <button>
+        <font-awesome-icon class="icon" icon="fas fa-arrows-up-down-left-right" />
+    </button>
+    <button>
+        <font-awesome-icon class="icon" icon="fas fa-trash-can" />
+    </button>
 </div>
 <div class="container">
     <div class="dropdown">
@@ -82,9 +86,17 @@ span{
 }
 .icons-list{
     font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+
 }
 
 .icon{
     margin: 0.3rem;
+    border: none;
+    background-color: white;
+    margin-top: 0.5rem;
+    font-size: 25px;
+    cursor: pointer;
 }
 </style>

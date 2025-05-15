@@ -38,8 +38,12 @@ function save() {
             </div>
         </div>
         <div class="btn-container">
-            <CreateNewModel class="btn-container__btn"/>
-            <CopyExistingModel class="btn-container__btn"/>
+            <router-link to="/skemaer/skema/opret">
+                <CreateNewModel class="btn-container__btn"/>
+            </router-link>
+            <router-link to="/skemaer/skabeloner/opret">
+                <CopyExistingModel class="btn-container__btn"/>
+            </router-link>
         </div>
     </div>
 
@@ -56,6 +60,11 @@ h3{
     margin: 0;
 }
 
+a{
+    text-decoration: none;
+    color: black;
+    margin: 5px;
+}
 
 .schedule-info{
     border-bottom: 2px solid #9dbfb4;

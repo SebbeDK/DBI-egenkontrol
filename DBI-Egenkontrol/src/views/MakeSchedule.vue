@@ -4,10 +4,12 @@
 
 <template>
     <div class="page-content">
+        <router-link to="/skemaer/skema/start">
         <div class="go-back">
             <font-awesome-icon :icon="['fas', 'arrow-left']" />
             <h5>Tilbage til dine skemaer</h5>
         </div>
+    </router-link>
         <div class="breadcrum">
             <h3 class="alm">Skemaer</h3>
             <font-awesome-icon :icon="['far', 'circle']" />
@@ -52,7 +54,9 @@
         </div>
         <div class="bottom-btn">
             <button class="cancel-btn">Annuller</button>
-            <button class="next-btn">Næste</button>
+            <router-link to="/skemaer/skema/skabelon">
+                <button class="next-btn">Næste</button>
+            </router-link>
         </div>
     </div>
 </template>
@@ -74,6 +78,11 @@
     font-family: "League Spartan";
     margin: 0;
 
+}
+
+a{
+    text-decoration: none;
+    color: black;
 }
 
 .go-back svg{
@@ -138,6 +147,7 @@ h3{
     padding: 15px 40px 15px 40px;
     font-size: 20px;
     color: white;
+    cursor: pointer;
 }
 
 .bottom-btn{

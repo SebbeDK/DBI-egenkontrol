@@ -2,7 +2,7 @@
 </script>
 
 <template>
-    <div class="container">
+    <div class="container" onclick="window.print()">
         <font-awesome-icon class="icon" icon="fa-solid fa-print" />
         <p>Print eller se skema</p>
     </div>

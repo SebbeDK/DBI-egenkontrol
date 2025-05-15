@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
+
 const router = useRouter();
 const username = ref('');
 const password = ref('');
@@ -13,7 +14,10 @@ function handleLogin() {
   success.value = '';
 
   if (username.value === 'admin' && password.value === '1234') {
-    router.push('/');
+    success.value = 'Login successful!';
+    setTimeout(()=>{
+      router.push('/skemaer')
+    },2500)
   } else {
     error.value = 'Invalid username or password.';
   }

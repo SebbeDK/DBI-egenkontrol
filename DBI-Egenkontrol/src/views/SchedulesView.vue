@@ -133,7 +133,7 @@ function parseDate(str) {
     <div class="files">
         <h4>Filer</h4>
         <div class="file-cards">
-            <div>
+            <div class="file-card__create">
             <router-link to="/skemaer/skema/start">
                 <CreateFileCard />
             </router-link>
@@ -164,7 +164,9 @@ function parseDate(str) {
   background: #e0e0e0;
   
 }
-
+.file-cards__create{
+    cursor: pointer;
+}
 h3{
     font-family: "League Spartan";
     margin: 3rem 1.5rem 3rem;
