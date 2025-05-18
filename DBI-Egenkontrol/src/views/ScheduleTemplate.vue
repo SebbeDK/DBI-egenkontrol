@@ -8,6 +8,7 @@ import EditRights from '@/components/EditRights.vue';
 import PrintSeeModel from '@/components/PrintSeeModel.vue';
 import ShortBreadcrumbsString from '@/components/ShortBreadcrumbsString.vue';
 import FeedbackError from '@/components/FeedbackError.vue';
+import Draggable from 'vuedraggable';
 
 const showSuccess = ref(false)
 function save() {
@@ -47,10 +48,10 @@ onBeforeRouteLeave((to, from, next)=>{
     }
 })
 let qIndex = ref(1)
-const questions = ref([{qIndex: 1},])
+const questions = ref([{qIndex: 1}, {qIndex: 2}, {qIndex: 3},])
 
 function addQuestion() {
-    qIndex += 1
+    qIndex.value += 1
     questions.value.push({qIndex: qIndex.value})
 }
 
@@ -66,24 +67,33 @@ function removeQuestion(index) {
     @confirm="confirmLeave"
     @cancel="cancelLeave"
     />
+
     <div class="page-content">
     <ShortBreadcrumbsString/>
         <div class="actions-control__line">
             <h3 class="schedule-info">ABA månedskontrol</h3>
 
-        <div class="actions">
-            <SaveButton @click="save()" class="actions__btn" id="save__button"/>
-            <EditRights class="actions__btn"/>
-            <PrintSeeModel class="actions__btn"/>
-        </div>
+            <div class="actions">
+                <SaveButton @click="save()" class="actions__btn" id="save__button"/>
+                <EditRights class="actions__btn"/>
+                <PrintSeeModel class="actions__btn"/>
+            </div>
         </div>
 
-   <div v-for="(question, index) in questions" :key="question.qIndex">
-   <YesOrNoQuestion 
-   :key="question.qIndex"
-   @newQuestion="addQuestion"
-   @deleteQuestion="removeQuestion(index)"/>
-    </div>
+    <Draggable
+    v-model="questions"
+    item-key="qIndex"
+    handle=".drag-handle">
+        <template #item="{element, index}">
+                <div>
+                    <YesOrNoQuestion
+                    :key="element.qIndex"
+                    @newQuestion="addQuestion"
+                    @deleteQuestion="removeQuestion(index)"
+                    />
+                </div>
+        </template>
+    </Draggable>
     <button v-if="questions.length === 0" @click="addQuestion" class="add">
         <font-awesome-icon :icon="['fas', 'circle-plus']" />
     </button>

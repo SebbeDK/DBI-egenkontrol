@@ -15,12 +15,12 @@ function stopEdit() {
 </script>
 
 <template>
- <div class="control-container">
+ <div class="control-container" :class="{ 'dragging': isDragging}" >
         <div class="control-container__control">
         <button @click="startEdit">
             <font-awesome-icon :icon="['far', 'pen-to-square']" />
         </button>
-        <button>
+        <button class="drag-handle">
             <font-awesome-icon :icon="['fas', 'up-down-left-right']" />
         </button>
         <button @click="$emit('deleteQuestion')">
@@ -95,4 +95,11 @@ function stopEdit() {
     cursor: pointer;
 }
 
+.drag-handle{
+    cursor: grab;
+    pointer-events: all;
+}
+.dragging{
+    opacity: 0.5;
+}
 </style>
