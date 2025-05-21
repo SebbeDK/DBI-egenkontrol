@@ -10,14 +10,14 @@
     </div>
     <div class="sidebar__content">
       <button class="sidebar__btn-profile">
-        <font-awesome-icon :icon="['fas', 'user']" />
+        <font-awesome-icon :icon="['fas', 'user']"/>
       </button>
       <button class="sidebar__btn-settings">
-        <font-awesome-icon :icon="['fas', 'gear']" />
+        <font-awesome-icon :icon="['fas', 'gear']"/>
       </button>
       <div class="search">
         <button class="sidebar__search">
-          <font-awesome-icon :icon="['fas', 'magnifying-glass']" />
+          <font-awesome-icon :icon="['fas', 'magnifying-glass']"/>
         </button>
         <input type="text" placeholder="Søg i skemaer">
       </div>
@@ -90,12 +90,13 @@
  border-radius: 20px;
  background-color: #9dbfb4;
  position: relative;
+ height: 40px;
 }
 
 .search button{
   background-color: #257473;
-  width: 41px;
-  height: 41px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   border: none;
   position: absolute;
@@ -103,9 +104,11 @@
 .search input{
   background: none;
   border: none;
-  padding: 0.5rem 0 0.5rem 2.5rem;
+  padding: 0.5rem 0 0.5rem 0.5rem;
   color: white;
   width: 7rem;
+  margin-left: 40px;
+  margin-top: 4px;
 }
 .search input::placeholder {
   color: white;

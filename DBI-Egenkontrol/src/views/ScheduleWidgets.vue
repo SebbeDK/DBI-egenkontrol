@@ -7,6 +7,8 @@ import EditRights from '@/components/EditRights.vue';
 import PrintSeeModel from '@/components/PrintSeeModel.vue';
 import ShortBreadcrumbsString from '@/components/ShortBreadcrumbsString.vue';
 import SelectFormType from '@/components/SelectFormType.vue';
+import Draggable from 'vuedraggable';
+
 const router = useRouter()
 
 
@@ -18,6 +20,17 @@ function save() {
     setTimeout(() => {
           router.push('/skemaer')
       },5000)
+}
+let qIndex = ref(1)
+const questions = ref([{qIndex: 1},])
+
+function addQuestion() {
+    qIndex.value += 1
+    questions.value.push({qIndex: qIndex.value})
+}
+
+function removeQuestion(index) {
+    questions.value.splice(index, 1)
 }
 </script>
 
@@ -34,36 +47,21 @@ function save() {
         </div>
         </div>
 
-    <div class="control-container">
-        <div class="control-container__control">
-            <button>
-            <font-awesome-icon :icon="['far', 'copy']" />
-        </button>
-        <button>
-            <font-awesome-icon :icon="['fas', 'up-down-left-right']" />
-        </button>
-        <button>
-            <font-awesome-icon :icon="['far', 'trash-can']" />
-        </button>
-        </div>
-        <div class="control">
-            <select name="" id="">
-                <option value="">Vælg type</option>
-            </select>
-            <label class="control__label" for=""></label>
-            <div class="widget">
-                <font-awesome-icon :icon="['far', 'circle-question']" />
-                <div class="widget__info">
-                    <p>Tryk på "vælg type" og begynd at lave widgets.</p><br>
-                    <p>Widget's er hvilken type besvarelse der ønskes.</p><br>
-                    <p>Såsom ja/nej, kryds af og så videre.</p><br>
-                    <p>+ knappen tilføjer flere widgets nedenunder.</p><br>
-                    <p>Du kan kopiere et widget til venstre, flytte rundt på dine widget's og slette.</p><br>
+<Draggable
+    v-model="questions"
+    item-key="qIndex"
+    handle=".drag-handle">
+        <template #item="{element, index}">
+                <div>
+                    <SelectFormType
+                    :key="element.qIndex"
+                    @newQuestion="addQuestion"
+                    @deleteQuestion="removeQuestion(index)"
+                    />
                 </div>
-            </div>
-        </div>
-    </div>
-    <button class="add">
+        </template>
+    </Draggable>
+        <button v-if="questions.length === 0" @click="addQuestion" class="add">
         <font-awesome-icon :icon="['fas', 'circle-plus']" />
     </button>
 
@@ -75,15 +73,6 @@ function save() {
 </template>
 
 <style scoped>
-.breadcrum{
-    display: flex;
-    margin: 0 0 2rem 0;
-}
-.breadcrum svg{
-    margin: 0.5rem 1rem;
-    font-size: 10px;
-}
-
 h5{
     font-weight: lighter;
 }
@@ -93,6 +82,9 @@ h3{
     margin: 0;
 }
 
+button{
+    cursor: pointer;
+}
 .alm {
     font-family: "League Spartan";
     font-weight: lighter;
@@ -152,7 +144,7 @@ select{
     background-color: #f7f7f7;
     border-radius: 5px;
     padding: 1rem;
-    width: 7rem;
+    width: 10rem;
     color: gray;
     top: -10px;
     left: -10px;
@@ -168,7 +160,7 @@ select{
 
 .widget__info p{
     font-family: "League Spartan";
-    font-size: 2px;
+    font-size: 1rem;
 }
 
 .widget__info p:first-of-type{

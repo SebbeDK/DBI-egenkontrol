@@ -48,7 +48,7 @@ onBeforeRouteLeave((to, from, next)=>{
     }
 })
 let qIndex = ref(1)
-const questions = ref([{qIndex: 1}, {qIndex: 2}, {qIndex: 3},])
+const questions = ref([{qIndex: 1},])
 
 function addQuestion() {
     qIndex.value += 1
