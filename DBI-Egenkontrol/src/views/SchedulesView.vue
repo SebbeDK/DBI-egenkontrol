@@ -108,15 +108,16 @@ function parseDate(str) {
 
                 <!-- hvis redigering - vis input -->
                 <template v-if="editingFolderIndex === index">
-                <input
-                    v-model="editingFolderTitle"
-                    @blur="saveFolderTitle(index)"
-                    @keyup.enter="saveFolderTitle(index)"
-                    @keyup.esc="cancelEditing"
-                    ref="editInput"
-                    style="font-size: 1rem; padding: 0.3em; width: 120px;"
-                    :autofocus="true"
-                />
+                    <input
+  v-model="editingFolderTitle"
+  @blur="saveFolderTitle(index)"
+  @keyup.enter="saveFolderTitle(index)"
+  @keyup.esc="cancelEditing"
+  ref="editInput"
+  :autofocus="true"
+  class="edit-folder-input"
+/>
+
                 </template>
                 <template v-else>
                 <folder-btn
@@ -164,7 +165,7 @@ function parseDate(str) {
   background: #e0e0e0;
   
 }
-.file-cards__create{
+.file-card__create{
     cursor: pointer;
 }
 h3{
@@ -198,6 +199,12 @@ h3{
 .file-containers div:first-of-type button, 
 .file-containers div:first-of-type input{
     margin-left:0;
+}
+
+.edit-folder-input {
+  font-size: 1rem;
+  padding: 0.3em;
+  width: 120px;
 }
 
 
