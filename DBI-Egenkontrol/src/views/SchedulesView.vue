@@ -8,6 +8,8 @@ import FolderBtn from '../components/FolderBtn.vue'
 import NewFolder from '../components/NewFolder.vue';
 import SeeMore from '../components/SeeMore.vue';
 import SortFilter from '../components/SortFilter.vue';
+import { useForms } from '@/useForms';
+import FormList from '@/components/FormList.vue';
 
 const selectedFolderIndex = ref(null);
 
@@ -91,6 +93,10 @@ function parseDate(str) {
   return new Date(year, month - 1, day);
 }
 
+
+const { forms } = useForms()
+
+
 </script>
 
 <template>
@@ -139,6 +145,7 @@ function parseDate(str) {
                 <CreateFileCard />
             </router-link>
             </div>
+            <FormList/>
 
             <!-- viser filer i den valgte mappe-->
             <template v-if="selectedFolderIndex !== null">
