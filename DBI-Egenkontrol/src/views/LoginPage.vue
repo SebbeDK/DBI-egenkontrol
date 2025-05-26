@@ -7,14 +7,11 @@ const router = useRouter();
 const username = ref('');
 const password = ref('');
 const error = ref('');
-const success = ref('');
 
 function handleLogin() {
   error.value = '';
-  success.value = '';
 
   if (username.value === 'admin' && password.value === '1234') {
-    success.value = 'Login successful!';
     setTimeout(()=>{
       router.push('/skemaer')
     },2500)
@@ -51,7 +48,6 @@ function handleLogin() {
       <button type="submit">Log ind</button>
     </form>
     <p v-if="error" class="error">{{ error }}</p>
-    <p v-if="success" class="success">{{ success }}</p>
   </div>
 </template>
 
