@@ -9,15 +9,30 @@ import PrintSeeModel from '@/components/PrintSeeModel.vue';
 import ShortBreadcrumbsString from '@/components/ShortBreadcrumbsString.vue';
 import FeedbackError from '@/components/FeedbackError.vue';
 import Draggable from 'vuedraggable';
+import { useForms } from '@/useForms';
+
+const { addForm } = useForms()
 
 const showSuccess = ref(false)
 function save() {
-    isSaved.value = true,
-    showSuccess.value = true;
 
-    setTimeout(() => {
-          router.push('/skemaer')
-      },5000)
+    const newForm = {
+    title: 'ABA månedskontrol',
+    createdAt: new Date(),
+  }
+
+    addForm(newForm)
+    .then(() => {
+      isSaved.value = true
+      showSuccess.value = true
+
+      setTimeout(() => {
+        router.push('/skemaer')
+      }, 5000)
+    })
+     .catch((error) => {
+      console.error('Fejl ved gemning af skema:', error)
+    })
 }
 
 const isSaved = ref(false)
