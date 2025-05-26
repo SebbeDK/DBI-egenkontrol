@@ -22,37 +22,52 @@ async function handleLogin() {
 </script>
 
 <template>
-<div class="login-container">
-    <h2>DBI Login</h2>
-    <form @submit.prevent="handleLogin">
-      <div class="input-container">
-        <label for="email">Email:</label>
-        <input
-          id="email"
-          v-model="email"
-          type="email"
-          required
-        />
-      </div>
-      <div class="input-container">
-        <label for="password">Adgangskode:</label>
-        <input
-          id="password"
-          v-model="password"
-          type="password"
-          required
-        />
-        <p>Opret bruger</p>
-        <p>Glemt kodeord</p>
-      </div>
-      <button type="submit">Log ind</button>
-    </form>
-    <p v-if="error" class="error">{{ error }}</p>
-  </div>
+<div class="blurred-background">
+  <div class="login-container">
+      <h2>DBI Login</h2>
+      <form @submit.prevent="handleLogin">
+        <div class="input-container">
+          <label for="email">Email:</label>
+          <input
+            id="email"
+            v-model="email"
+            type="email"
+            required
+          />
+        </div>
+        <div class="input-container">
+          <label for="password">Adgangskode:</label>
+          <input
+            id="password"
+            v-model="password"
+            type="password"
+            required
+          />
+          <p>Opret bruger</p>
+          <p>Glemt kodeord</p>
+        </div>
+        <button type="submit">Log ind</button>
+      </form>
+      <p v-if="error" class="error">{{ error }}</p>
+    </div>
+</div>
 </template>
 
 
 <style scoped>
+.blurred-background{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(2px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.3);
+  z-index: 0;
+}
 .login-container {
     max-width: 300px;
     margin: 2rem auto;
