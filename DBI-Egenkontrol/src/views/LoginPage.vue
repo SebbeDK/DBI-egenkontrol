@@ -1,22 +1,22 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { auth } from '@/firebase';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 
 const router = useRouter();
-const username = ref('');
+const email = ref('');
 const password = ref('');
 const error = ref('');
 
-function handleLogin() {
+async function handleLogin() {
   error.value = '';
-
-  if (username.value === 'admin' && password.value === '1234') {
-    setTimeout(()=>{
-      router.push('/skemaer')
-    },2500)
-  } else {
-    error.value = 'Invalid username or password.';
+  try {
+    await signInWithEmailAndPassword(auth, email.value, password.value);
+    router.push('/skemaer');
+  } catch (err) {
+    error.value = 'Email eller password matcher ikke';
   }
 }
 </script>
@@ -26,11 +26,11 @@ function handleLogin() {
     <h2>DBI Login</h2>
     <form @submit.prevent="handleLogin">
       <div class="input-container">
-        <label for="username">Brugernavn:</label>
+        <label for="email">Email:</label>
         <input
-          id="username"
-          v-model="username"
-          type="text"
+          id="email"
+          v-model="email"
+          type="email"
           required
         />
       </div>
