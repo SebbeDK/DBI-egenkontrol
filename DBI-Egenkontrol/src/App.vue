@@ -36,14 +36,14 @@
   <div class="content">
     <header>
       <nav class="horizontal-menu">
-        <router-link to="/" class="menu-item">Rapporter</router-link>
-        <router-link to="/" class="menu-item">Overskredet deadline</router-link>
-        <router-link to="/" class="menu-item">Brugere</router-link>
-        <router-link to="/" class="menu-item">Grupper</router-link>
-        <router-link to="/" class="menu-item">Dokumenter</router-link>
-        <router-link to="/" class="menu-item">Objekter</router-link>
+        <p to="/" class="menu-item">Rapporter</p>
+        <p to="/" class="menu-item">Overskredet deadline</p>
+        <p to="/" class="menu-item">Brugere</p>
+        <p to="/" class="menu-item">Grupper</p>
+        <p to="/" class="menu-item">Dokumenter</p>
+        <p to="/" class="menu-item">Objekter</p>
         <router-link to="/skemaer" class="menu-item">Skemaer</router-link>
-        <router-link to="/" class="menu-item">Planlægning</router-link>
+        <p to="/" class="menu-item">Planlægning</p>
   </nav>
     </header>
     <main>
@@ -169,9 +169,17 @@ cursor: pointer;
 
 .horizontal-menu{
   border-bottom: 3px solid #9dbfb4;
-  padding: 1rem 1rem;
+  padding: 1rem 0.5rem;
   display: flex;
   justify-content: space-between;
+}
+
+.horizontal-menu p{
+  display: flex;
+  justify-content: space-between;
+  color: #9dbfb4;
+  font-family: "league spartan";
+  cursor: pointer;
 }
 
 .horizontal-menu a{
@@ -183,6 +191,7 @@ cursor: pointer;
   font-size: 26px;
   position: relative;
   transition: color 0.3s ease;
+  cursor: pointer;
 }
 
 .horizontal-menu a.router-link-active {
@@ -194,7 +203,7 @@ cursor: pointer;
   content: '';
   position: absolute;
   left: 25%;
-  bottom: -3px;
+  bottom: 10px;
   width: 50%;
   height: 3px;
   background-color: #257473;
