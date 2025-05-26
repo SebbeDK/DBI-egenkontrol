@@ -1,3 +1,4 @@
+@ -1,36 +1,108 @@
 
 # DBI-egenkontrol
 Eksamensopgave for Modern Frontend 2025 i tværfagligt samarbejde med klienten DBI og Digitale konceptudviklere på UCL. 
@@ -33,6 +34,9 @@ Følg disse trin for at installere og starte projektet:
 3. Se det i din browser 
 
     -> Skriv http://localhost:5173 i din browser
+    
+    -> Naviger til http://localhost:5173/login for at starte fra login
+
 
 
 
