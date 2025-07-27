@@ -11,7 +11,7 @@ import {
   createFileInFolder,
   updateFileInFolder,
   deleteFileInFolder,
-} from '@/services/firestoreService'; 
+} from '@/services/FirestoreService'; 
 
 export const useFolderStore = defineStore('folder', {
   

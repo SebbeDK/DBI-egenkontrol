@@ -1,8 +1,8 @@
-import { db } from "../firebase"; 
+import { db } from "../firebase";
 
 
 import {
-  collection,   
+  collection,
   addDoc,       
   getDocs,      
   doc,          
@@ -10,6 +10,7 @@ import {
   deleteDoc,    
   query,        
   orderBy,      
+  onSnapshot,   
 } from "firebase/firestore";
 
 
