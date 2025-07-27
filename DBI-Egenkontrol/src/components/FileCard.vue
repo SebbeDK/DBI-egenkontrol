@@ -2,11 +2,12 @@
 import { ref, onMounted, onUnmounted } from 'vue';
 
 const props = defineProps({
+  id: String, 
   title: String,
   date: String,
 });
 
-const emit = defineEmits(['edit', 'delete']);
+const emit = defineEmits(['edit', 'delete', 'move', 'copy']);
 
 const menuOpen = ref(false);
 
@@ -20,18 +21,26 @@ function closeMenu() {
 }
 
 function handleEdit() {
-  emit('edit');
+  emit('edit', { fileId: props.id });
   closeMenu();
 }
 
 function handleDelete() {
-  emit('delete');
+  emit('delete', props.id);
   closeMenu();
 }
 
-// Close menu when clicking outside
+function handleMove() {
+  emit('move', props.id);
+  closeMenu();
+}
+function handleCopy() {
+  emit('copy', props.id);
+  closeMenu();
+}
+
 function onClickOutside(event) {
-  if (!event.target.closest('.file-card')) {
+  if (!event.target.closest('.file-card') && !event.target.closest('.dropdown-menu')) {
     closeMenu();
   }
 }
@@ -43,7 +52,6 @@ onUnmounted(() => {
   document.removeEventListener('click', onClickOutside);
 });
 </script>
-
 
 <template>
   <div class="file-card">
@@ -66,6 +74,9 @@ onUnmounted(() => {
           <button @click="handleCopy" class="dropdown-btn">Kopier</button>
         </li>
         <li>
+          <button @click="handleEdit" class="dropdown-btn">Rediger</button>
+        </li>
+         <li>
           <button @click="handleDelete" class="dropdown-btn">Slet</button>
         </li>
       </ul>
@@ -78,8 +89,8 @@ onUnmounted(() => {
   </div>
 </template>
 
-
 <style scoped>
+
 .file-card {
   background: #9dbfb4;
   padding: 1rem;
@@ -91,12 +102,10 @@ onUnmounted(() => {
   color: white;
   font-family: "League Spartan";
 }
-
 .file-card-icon {
   position: absolute;
   left: 20px;
 }
-
 .menu-icon {
   position: absolute;
   right: 15px;
@@ -107,11 +116,9 @@ onUnmounted(() => {
   font-size: 1.2rem;
   z-index: 10;
 }
-
 .menu-icon:hover {
   color: #e0e0e0;
 }
-
 .dropdown-menu {
   position: absolute;
   top: 35px;
@@ -123,14 +130,11 @@ onUnmounted(() => {
   z-index: 11;
   border-radius: 4px;
 }
-
 .dropdown-list {
   list-style: none;
   margin: 0;
   padding: 0;
-
 }
-
 .dropdown-btn {
   width: 100%;
   text-align: center;
@@ -145,35 +149,32 @@ onUnmounted(() => {
   font-size: 19px;
   color: #e0e0e0;
 }
-
 .dropdown-list li:last-of-type .dropdown-btn{
   border: none;
 }
-
 .dropdown-btn:hover {
   background: #9dbfb4;
 }
-
 h3 {
   color: white;
   margin-top: 2.5rem;
   font-weight: lighter;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 90%;
 }
-
 .file-card__date {
   position: absolute;
   bottom: 15px;
-}
-
-.file-card__date svg {
-  margin-top: 3.5rem;
+  left: 20px;
   font-size: 13px;
 }
-
+.file-card__date svg {
+  margin-right: 5px;
+  font-size: 13px;
+}
 .file-card__date span {
-  margin-top: 3.5rem;
   font-size: 13px;
 }
 </style>
-
-

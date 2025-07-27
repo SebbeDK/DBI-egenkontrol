@@ -1,100 +1,198 @@
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue'; 
+import { useRouter } from 'vue-router';
+const router = useRouter();
+
 import CreateFileCard from '@/components/CreateFileCard.vue';
 import BackToTop from '../components/BackToTop.vue';
 import DisplayLayoutButtons from '../components/DisplayLayoutButtons.vue';
-import FileCard from '../components/FileCard.vue'
+import FileCard from '../components/FileCard.vue' 
 import FolderBtn from '../components/FolderBtn.vue'
 import NewFolder from '../components/NewFolder.vue';
 import SeeMore from '../components/SeeMore.vue';
 import SortFilter from '../components/SortFilter.vue';
-import { useForms } from '@/useForms';
-import FormList from '@/components/FormList.vue';
-
-const selectedFolderIndex = ref(null);
-
-function selectFolder(index) {
-  selectedFolderIndex.value = index;
-}
-
-const editingFolderIndex = ref(null);
-const editingFolderTitle = ref('');
-
-// info på cards
-const folders = ref([
-   { 
-        title: 'januar 2025',
-        files: [
-            {
-                title: "Dansk",
-                date: "21/1/2025",
-                uses: 34
-            }
-        ]
-    },
-    { 
-        title: 'februar 2025',
-        files: [
-            {
-                title: "Månedskontrol",
-                date: "1/2/2025",
-                uses: 55
-            },
-            {
-                title: "AIA",
-                date: "10/2/2025",
-                uses: 12
-            }
-        ]
-    },
-]);
-
-function startEditingFolder(index) {
-  editingFolderIndex.value = index;
-  editingFolderTitle.value = folders.value[index].title;
- 
-}
-
-function saveFolderTitle(index) {
-  if (editingFolderTitle.value.trim() !== '') {
-    folders.value[index].title = editingFolderTitle.value.trim();
-  }
-  editingFolderIndex.value = null;
-}
-
-function cancelEditing() {
-  editingFolderIndex.value = null;
-}
 
 
-function addFolder() {
-  folders.value.push({ title: "Ny Mappe", files: [] });
-}
+import {
+  createFolder,
+  subscribeToFolders,
+  updateFolder,
+  deleteFolder,
+  subscribeToFilesInFolder,
+  deleteFileInFolder
+} from '../services/FirestoreService'; 
+
+
+const folders = ref([]);
+
+const selectedFolderId = ref(null);
+
+
+const editingFolderId = ref(null); 
+const editingFolderTitle = ref(''); 
+
+
+const filesInSelectedFolder = ref([]);
 
 const sortBy = ref('none');
 
+
+let unsubscribeFolders = null;
+let unsubscribeFiles = null;
+
+
+
+onMounted(() => {
+
+  unsubscribeFolders = subscribeToFolders((fetchedFolders) => {
+    folders.value = fetchedFolders; 
+
+    
+    if (selectedFolderId.value && !fetchedFolders.some(f => f.id === selectedFolderId.value)) {
+      selectedFolderId.value = null;
+    }
+   
+    if (selectedFolderId.value === null && fetchedFolders.length > 0) {
+      selectedFolderId.value = fetchedFolders[0].id;
+    }
+  });
+});
+
+
+onUnmounted(() => {
+  if (unsubscribeFolders) unsubscribeFolders(); 
+  if (unsubscribeFiles) unsubscribeFiles();     
+});
+
+
+watch(selectedFolderId, (newFolderId) => {
+  
+  if (unsubscribeFiles) unsubscribeFiles();
+
+  if (newFolderId) {
+    
+    
+    unsubscribeFiles = subscribeToFilesInFolder(newFolderId, (fetchedFiles) => {
+      filesInSelectedFolder.value = fetchedFiles; 
+    });
+  } else {
+    
+    filesInSelectedFolder.value = [];
+  }
+}, { immediate: true }); 
+
+
+
+
+
+function selectFolder(folderId) {
+  selectedFolderId.value = folderId; 
+}
+
+
+function startEditingFolder(folderId, currentTitle) {
+  editingFolderId.value = folderId;        
+  editingFolderTitle.value = currentTitle; 
+}
+
+
+async function saveFolderTitle(folderId) {
+  
+  if (editingFolderTitle.value.trim() !== '') {
+    try {
+      
+      await updateFolder(folderId, { title: editingFolderTitle.value.trim() });
+    } catch (e) {
+      console.error("Fejl ved opdatering af mappetitel:", e);
+      
+    }
+  }
+  editingFolderId.value = null; 
+}
+
+
+function cancelEditing() {
+  editingFolderId.value = null; 
+}
+
+
+async function addFolder() {
+  try {
+    const newFolderData = {
+      title: "Ny Mappe",        
+      createdAt: new Date(),    
+    };
+    
+    const createdFolder = await createFolder(newFolderData);
+    selectedFolderId.value = createdFolder.id; 
+  } catch (e) {
+    console.error("Fejl ved tilføjelse af mappe:", e);
+  }
+}
+
+
+async function deleteSelectedFolder() {
+  
+  if (!selectedFolderId.value) return;
+
+  if (window.confirm("Er du sikker på du vil slette den valgte mappe og dens filer?")) {
+    try {
+      
+      await deleteFolder(selectedFolderId.value);
+      selectedFolderId.value = null; 
+    } catch (e) {
+      console.error("Fejl ved sletning af mappe:", e);
+    }
+  }
+}
+
+
+
+
 const sortedFiles = computed(() => {
-  if (selectedFolderIndex.value === null) return [];
-  const files = folders.value[selectedFolderIndex.value].files || [];
-  let arr = [...files];
+  
+  let arr = [...filesInSelectedFolder.value];
+
+  
   if (sortBy.value === 'newest') {
-    arr.sort((a, b) => parseDate(b.date) - parseDate(a.date));
+    
+    arr.sort((a, b) => (b.date ? b.date.toDate().getTime() : 0) - (a.date ? a.date.toDate().getTime() : 0));
   } else if (sortBy.value === 'oldest') {
-    arr.sort((a, b) => parseDate(a.date) - parseDate(b.date));
+    
+    arr.sort((a, b) => (a.date ? a.date.toDate().getTime() : 0) - (b.date ? b.date.toDate().getTime() : 0));
   } else if (sortBy.value === 'mostUsed') {
-    arr.sort((a, b) => b.uses - a.uses);
+    
+    arr.sort((a, b) => (b.uses || 0) - (a.uses || 0));
   }
   return arr;
 });
 
 
-function parseDate(str) {
-  const [day, month, year] = str.split('/').map(Number);
-  return new Date(year, month - 1, day);
+async function handleDeleteFileInFolder(fileIdToDelete) {
+  
+  if (!selectedFolderId.value) {
+    alert("Vælg venligst en mappe, før du forsøger at slette en fil!");
+    return;
+  }
+  if (window.confirm("Er du sikker på du vil slette denne fil?")) {
+    try {
+      
+      await deleteFileInFolder(selectedFolderId.value, fileIdToDelete);
+      
+    } catch (e) {
+      console.error("Fejl ved sletning af fil:", e);
+    }
+  }
 }
 
+function handleEditFile({ fileId }) {
+  if (!selectedFolderId.value) {
+    alert("Vælg en mappe først!");
+    return;
+  }
+  router.push(`/skemaer/skema/start/${selectedFolderId.value}/${fileId}`);
+}
 
-const { forms } = useForms()
 
 
 </script>
@@ -103,63 +201,75 @@ const { forms } = useForms()
     <h3>Skemaer</h3>
     <div class="flex-container">
         <SortFilter @sort="sortBy = $event"></SortFilter>
-
         <display-layout-buttons></display-layout-buttons>
       <new-folder @click="addFolder"></new-folder>
+      
+      <button v-if="selectedFolderId" @click="deleteSelectedFolder" class="delete-folder-btn">Slet valgt mappe</button>
     </div>
+
     <div class="file-containers">
         <h4>Mapper</h4>
-        <template v-for="(folder, index) in folders" :key="folder.title">
+        
+        <p v-if="folders.length === 0">Ingen mapper fundet. Opret en!</p>
+       
+        <template v-for="folder in folders" :key="folder.id">
             <div style="display: inline-block;">
-
-                <!-- hvis redigering - vis input -->
-                <template v-if="editingFolderIndex === index">
+               
+                <template v-if="editingFolderId === folder.id">
                     <input
-  v-model="editingFolderTitle"
-  @blur="saveFolderTitle(index)"
-  @keyup.enter="saveFolderTitle(index)"
-  @keyup.esc="cancelEditing"
-  ref="editInput"
-  :autofocus="true"
-  class="edit-folder-input"
-/>
-
+                      v-model="editingFolderTitle"
+                      @blur="saveFolderTitle(folder.id)"
+                      @keyup.enter="saveFolderTitle(folder.id)"
+                      @keyup.esc="cancelEditing"
+                      class="edit-folder-input"
+                    />
                 </template>
+               
                 <template v-else>
-                <folder-btn
-                    :title="folder.title"
-                    @click="selectFolder(index)"
-                    @dblclick.stop="startEditingFolder(index)"
-                    :class="{ selected: selectedFolderIndex === index }"
-                />
+                    <folder-btn
+                        :title="folder.title"
+                        @click="selectFolder(folder.id)"
+                        @dblclick.stop="startEditingFolder(folder.id, folder.title)"
+                        :class="{ selected: selectedFolderId === folder.id }"
+                    />
                 </template>
             </div>
         </template>
-
     </div>
+
     <div class="files">
         <h4>Filer</h4>
         <div class="file-cards">
             <div class="file-card__create">
-            <router-link to="/skemaer/skema/start">
-                <CreateFileCard />
-            </router-link>
+               
+                <router-link :to="selectedFolderId ? `/skemaer/skema/start?folderId=${selectedFolderId}` : '/skemaer/skema/start'">
+                    <CreateFileCard />
+                </router-link>
             </div>
-            <FormList/>
-
-            <!-- viser filer i den valgte mappe-->
-            <template v-if="selectedFolderIndex !== null">
+            
+           
+            <template v-if="selectedFolderId === null">
+                <p>Vælg en mappe for at se eller oprette filer.</p>
+            </template>
+            
+            <template v-else>
+                
+                <p v-if="sortedFiles.length === 0">Ingen filer i denne mappe. Opret en!</p>
+                
                 <FileCard
                     v-for="file in sortedFiles"
-                    :key="file.title"
+                    :key="file.id"
+                    :id="file.id"
                     :title="file.title"
-                    :date="file.date"
+                    :date="file.date ? new Date(file.date.seconds * 1000).toLocaleDateString('da-DK') : 'Ukendt Dato'"
+                    @delete="handleDeleteFileInFolder"
+                    @edit="handleEditFile" 
                     />
-
             </template>
-        </div>
-        </div>
 
+            
+        </div>
+    </div>
     
     <div class="bottom-links"> 
         <see-more></see-more>
@@ -168,6 +278,7 @@ const { forms } = useForms()
 </template>
 
 <style scoped>
+
 .selected {
   background: #e0e0e0;
   
@@ -182,6 +293,7 @@ h3{
 
 .flex-container{
     display: flex;
+    align-items: center; 
 }
 
 .flex-container .dropdown{
@@ -221,18 +333,23 @@ h3{
 
 .file-cards{
   display: flex;
-  
-}
-
-.file-cards div{
-    margin-left: 2rem;
-}
-
-.file-cards div:first-of-type{
-    margin-left: 0rem;
+  flex-wrap: wrap; 
+  gap: 2rem; 
 }
 
 .bottom-links{
     margin: 2rem 1.5rem 3rem;
+}
+.delete-folder-btn {
+  margin-left: 20px; 
+  background-color: #f44336; 
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.delete-folder-btn:hover {
+  background-color: #da190b;
 }
 </style>

@@ -28,6 +28,18 @@ const routes = [
     component: () => import('../views/MakeSchedule.vue'),
   },
   {
+    path: '/skemaer/skema/start/:folderId?/:fileId?',
+    name: 'StartSchedule',
+    component: () => import('../views/StartSchedule.vue'),
+    props: true,
+  },
+  {
+    path: '/skemaer/skema/opret/:folderId?/:fileId?',
+    name: 'MakeSchedule',
+    component: () => import('../views/MakeSchedule.vue'),
+    props: true,
+  },
+  {
     path: '/skemaer/skema/skabelon',
     name: 'ScheduleTemplate',
     component: () => import('../views/ScheduleTemplate.vue'),
@@ -41,11 +53,6 @@ const routes = [
     path: '/skemaer/skema/widget',
     name: 'ScheduleWidgets',
     component: () => import('../views/ScheduleWidgets.vue'),
-  },
-  {
-    path: '/skemaer/skema/start',
-    name: 'StartSchedule',
-    component: () => import('../views/StartSchedule.vue'),
   },
   {
     path: '/login',

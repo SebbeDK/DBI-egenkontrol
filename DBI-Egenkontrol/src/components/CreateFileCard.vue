@@ -33,6 +33,8 @@ defineProps({
     border: none;
     background-color: #f4f3f4;
     width: 150px;
+    cursor: pointer;
+
 }
 
 #addFileButton svg{
@@ -47,7 +49,7 @@ defineProps({
   box-shadow: inset 0px 2px 4px rgba(0,0,0,0.2);
   height: 10rem;
   width: 9rem;
-
+  cursor: pointer;
 
 }
 </style>

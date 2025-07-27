@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { onBeforeRouteLeave, useRouter } from 'vue-router'
 import FeedbackSuccess from '@/components/FeedbackSuccess.vue';
 import YesOrNoQuestion from '@/components/YesOrNoQuestion.vue';
@@ -9,70 +9,116 @@ import PrintSeeModel from '@/components/PrintSeeModel.vue';
 import ShortBreadcrumbsString from '@/components/ShortBreadcrumbsString.vue';
 import FeedbackError from '@/components/FeedbackError.vue';
 import Draggable from 'vuedraggable';
-import { useForms } from '@/useForms';
+import { useFormCreationStore } from '@/stores/formCreationStore'; 
+import { useFolderStore } from '@/stores/folderStore'; 
+import { storeToRefs } from 'pinia'; 
 
-const { addForm } = useForms()
 
-const showSuccess = ref(false)
-function save() {
+const router = useRouter();
+const formCreationStore = useFormCreationStore();
+const folderStore = useFolderStore(); 
 
-    const newForm = {
-    title: 'ABA månedskontrol',
-    createdAt: new Date(),
-  }
 
-    addForm(newForm)
-    .then(() => {
-      isSaved.value = true
-      showSuccess.value = true
+const { currentNewForm } = storeToRefs(formCreationStore);
 
-      setTimeout(() => {
-        router.push('/skemaer')
-      }, 5000)
-    })
-     .catch((error) => {
-      console.error('Fejl ved gemning af skema:', error)
-    })
+
+const questions = ref(currentNewForm.value.questions.length > 0 ? currentNewForm.value.questions : [{qIndex: 1},]);
+let qIndex = questions.value.length > 0 ? Math.max(...questions.value.map(q => q.qIndex)) : 1;
+
+
+onMounted(() => {
+});
+
+
+function addQuestion() {
+    qIndex++;
+    questions.value.push({ qIndex: qIndex });
+    
+    formCreationStore.updateQuestions(questions.value);
 }
 
-const isSaved = ref(false)
-const showFeedbackError = ref(false)
-const pendingNavigation = ref(null)
-const router = useRouter()
+
+function removeQuestion(index) {
+    questions.value.splice(index, 1);
+    
+    formCreationStore.updateQuestions(questions.value);
+}
+
+
+const showSuccess = ref(false);
+const isSaved = ref(false); 
+const showFeedbackError = ref(false);
+const pendingNavigation = ref(null);
+
+async function save() {
+   
+    formCreationStore.updateQuestions(questions.value);
+
+    
+    const finalFormData = {
+        title: currentNewForm.value.name, 
+        
+        allowSaveReportsTemporarily: currentNewForm.value.allowSaveReportsTemporarily,
+        allowDeleteAndEdit: currentNewForm.value.allowDeleteAndEdit,
+        allowUseForOtherTasks: currentNewForm.value.allowUseForOtherTasks,
+        frequency: currentNewForm.value.frequency,
+        receiptRecipient: currentNewForm.value.receiptRecipient,
+        deviationRecipient: currentNewForm.value.deviationRecipient,
+        addRightsGroup: currentNewForm.value.addRightsGroup,
+        
+        questions: questions.value,
+        
+        date: new Date(), 
+        uses: 0, 
+    };
+
+
+    const folderIdToSave = currentNewForm.value.folderId;
+    if (!folderIdToSave) {
+        console.error("Fejl: Ingen mappe valgt at gemme skemaet i.");
+        alert("Fejl: Vælg venligst en mappe at gemme skemaet i (gå tilbage til forsiden).");
+        return;
+    }
+
+    try {
+    
+        await folderStore.addFileToFolder(folderIdToSave, finalFormData);
+        isSaved.value = true;
+        showSuccess.value = true;
+        formCreationStore.resetForm(); 
+
+        setTimeout(() => {
+            router.push('/skemaer'); 
+        }, 3000); 
+    } catch (error) {
+        console.error('Fejl ved gemning af skema:', error);
+        alert('Der opstod en fejl ved gemning af skemaet.');
+    }
+}
+
 
 function confirmLeave() {
-    showFeedbackError.value = false
-    isSaved.value = true
+    showFeedbackError.value = false;
+    isSaved.value = true; 
     if (pendingNavigation.value) {
-        router.push(pendingNavigation.value)
+        router.push(pendingNavigation.value);
     }
 }  
 
 function cancelLeave() {
-    showFeedbackError.value = false
-    pendingNavigation.value = null
+    showFeedbackError.value = false;
+    pendingNavigation.value = null;
 }
 
 onBeforeRouteLeave((to, from, next)=>{
-    if (!isSaved.value) {
-        showFeedbackError.value = true
-        pendingNavigation.value = to.fullPath
-        next(false)
+    if (!isSaved.value) { 
+        showFeedbackError.value = true;
+        pendingNavigation.value = to.fullPath;
+        next(false); 
     } else {
-        next()
+        next(); 
     }
 })
-let qIndex = ref(1)
-const questions = ref([{qIndex: 1},])
-
-function addQuestion() {
-    qIndex.value += 1
-    questions.value.push({qIndex: qIndex.value})
-}
-
-function removeQuestion(index) {
-    questions.value.splice(index, 1)
-}
 
 </script>
 
@@ -86,7 +132,8 @@ function removeQuestion(index) {
     <div class="page-content">
     <ShortBreadcrumbsString/>
         <div class="actions-control__line">
-            <h3 class="schedule-info">ABA månedskontrol</h3>
+           
+            <h3 class="schedule-info">{{ currentNewForm.name || 'Nyt skema' }}</h3>
 
             <div class="actions">
                 <SaveButton @click="save()" class="actions__btn" id="save__button"/>
@@ -120,6 +167,7 @@ function removeQuestion(index) {
 </template>
 
 <style scoped>
+
 .go-back{
     display: flex;
     font-family: "League Spartan";
@@ -199,5 +247,4 @@ h3{
     font-size: 25px;
     cursor: pointer;
 }
-
 </style>
