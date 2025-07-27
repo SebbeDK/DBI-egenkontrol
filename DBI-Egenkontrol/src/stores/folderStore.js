@@ -110,7 +110,7 @@ export const useFolderStore = defineStore('folder', {
 
    
 
-    /
+    
     async addFolder(folderData) {
       this.foldersLoading = true;
       this.foldersError = null;
