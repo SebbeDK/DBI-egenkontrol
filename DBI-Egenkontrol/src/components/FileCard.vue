@@ -5,6 +5,7 @@ const props = defineProps({
   id: String, 
   title: String,
   date: String,
+  canDelete: Boolean,
 });
 
 const emit = defineEmits(['edit', 'delete', 'move', 'copy']);
@@ -73,10 +74,10 @@ onUnmounted(() => {
         <li>
           <button @click="handleCopy" class="dropdown-btn">Kopier</button>
         </li>
-        <li>
+         <li v-if="canEdit">
           <button @click="handleEdit" class="dropdown-btn">Rediger</button>
         </li>
-         <li>
+        <li v-if="canDelete">
           <button @click="handleDelete" class="dropdown-btn">Slet</button>
         </li>
       </ul>

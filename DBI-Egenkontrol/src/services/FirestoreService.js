@@ -1,4 +1,5 @@
 import { db } from "../firebase";
+import { useUserStore } from '@/stores/userStore';
 
 
 import {
@@ -20,13 +21,18 @@ const FOLDERS_COLLECTION_NAME = "folders";
 
 export const createFolder = async (folderData) => {
   try {
-    
-    const docRef = await addDoc(collection(db, FOLDERS_COLLECTION_NAME), folderData);
+      const userStore = useUserStore(); 
+      const folderWithOwner = {
+      ...folderData,
+      created_by: userStore.currentUserId, 
+    };
+
+        const docRef = await addDoc(collection(db, FOLDERS_COLLECTION_NAME), folderWithOwner);
     console.log("Mappe oprettet med ID: ", docRef.id);
-    return { id: docRef.id, ...folderData }; 
+    return { id: docRef.id, ...folderWithOwner };
   } catch (error) {
     console.error("Fejl ved oprettelse af mappe: ", error);
-    throw error; 
+    throw error;
   }
 };
 
@@ -77,11 +83,16 @@ export const deleteFolder = async (folderId) => {
 
 export const createFileInFolder = async (folderId, fileData) => {
   try {
-    
+    const userStore = useUserStore();
+    const fileWithOwner = {
+      ...fileData,
+      created_by: userStore.currentUserId, 
+    };
+
     const filesCollectionRef = collection(db, FOLDERS_COLLECTION_NAME, folderId, "files");
-    const docRef = await addDoc(filesCollectionRef, fileData);
+    const docRef = await addDoc(filesCollectionRef, fileWithOwner);
     console.log("Fil oprettet i mappe med ID: ", docRef.id);
-    return { id: docRef.id, ...fileData };
+    return { id: docRef.id, ...fileWithOwner };
   } catch (error) {
     console.error("Fejl ved oprettelse af fil i mappe: ", error);
     throw error;

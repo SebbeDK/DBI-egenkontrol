@@ -1,9 +1,10 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { auth } from '@/firebase';
+import { auth, db } from '@/firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-
+import { doc, getDoc } from 'firebase/firestore';
+import { useUserStore } from '@/stores/userStore';
 
 const router = useRouter();
 const email = ref('');
@@ -11,9 +12,30 @@ const password = ref('');
 const error = ref('');
 
 async function handleLogin() {
-  error.value = '';
+  error.value = ''; 
   try {
-    await signInWithEmailAndPassword(auth, email.value, password.value);
+   
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email.value,
+      password.value
+    );
+    const user = userCredential.user;
+
+    
+    const docRef = doc(db, 'userrole', user.uid);
+    const docSnap = await getDoc(docRef);
+
+    let isAdmin = false;
+    if (docSnap.exists()) {
+      isAdmin = docSnap.data().isAdmin || false;
+    }
+
+    
+    const userStore = useUserStore();
+    userStore.setCurrentUser(user.uid, isAdmin);
+
+   
     router.push('/skemaer');
   } catch (err) {
     error.value = 'Email eller password matcher ikke';

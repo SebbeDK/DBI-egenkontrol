@@ -11,7 +11,10 @@ import FolderBtn from '../components/FolderBtn.vue'
 import NewFolder from '../components/NewFolder.vue';
 import SeeMore from '../components/SeeMore.vue';
 import SortFilter from '../components/SortFilter.vue';
+import { useUserStore } from '@/stores/userStore';
+const userStore = useUserStore();
 
+console.log('Er admin?', userStore.isAdmin);
 
 import {
   createFolder,
@@ -80,8 +83,6 @@ watch(selectedFolderId, (newFolderId) => {
     filesInSelectedFolder.value = [];
   }
 }, { immediate: true }); 
-
-
 
 
 
@@ -204,7 +205,7 @@ function handleEditFile({ fileId }) {
         <display-layout-buttons></display-layout-buttons>
       <new-folder @click="addFolder"></new-folder>
       
-      <button v-if="selectedFolderId" @click="deleteSelectedFolder" class="delete-folder-btn">Slet valgt mappe</button>
+      <button v-if="selectedFolderId && (userStore.isAdmin || folders.find(f => f.id === selectedFolderId)?.created_by === userStore.currentUserId)" @click="deleteSelectedFolder" class="delete-folder-btn">Slet valgt mappe</button>
     </div>
 
     <div class="file-containers">
@@ -262,6 +263,8 @@ function handleEditFile({ fileId }) {
                     :id="file.id"
                     :title="file.title"
                     :date="file.date ? new Date(file.date.seconds * 1000).toLocaleDateString('da-DK') : 'Ukendt Dato'"
+                    :canDelete="userStore.isAdmin || file.created_by === userStore.currentUserId"
+                    :canEdit="userStore.isAdmin || file.created_by === userStore.currentUserId"
                     @delete="handleDeleteFileInFolder"
                     @edit="handleEditFile" 
                     />

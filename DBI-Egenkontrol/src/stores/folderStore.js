@@ -1,38 +1,30 @@
-
 import { defineStore } from 'pinia';
 import {
-  
-  
   createFolder,
-  subscribeToFolders, 
-  updateFolder,
-  deleteFolder,
-  subscribeToFilesInFolder, 
+  subscribeToFolders,
+  updateFolder as updateFolderService,
+  deleteFolder as deleteFolderService,
+  subscribeToFilesInFolder,
   createFileInFolder,
-  updateFileInFolder,
-  deleteFileInFolder,
-} from '@/services/FirestoreService'; 
+  updateFileInFolder as updateFileInFolderService,
+  deleteFileInFolder as deleteFileInFolderService,
+} from '@/services/FirestoreService';
+import { useUserStore } from '@/stores/userStore'; 
 
 export const useFolderStore = defineStore('folder', {
-  
   state: () => ({
-    folders: [], 
-    selectedFolderId: null, 
-    filesInSelectedFolder: [], 
-    foldersLoading: false, 
-    filesLoading: false, 
-    foldersError: null, 
-    filesError: null, 
-
-    
-    
+    folders: [],
+    selectedFolderId: null,
+    filesInSelectedFolder: [],
+    foldersLoading: false,
+    filesLoading: false,
+    foldersError: null,
+    filesError: null,
     _unsubscribeFolders: null,
     _unsubscribeFiles: null,
   }),
 
-  
   getters: {
-    
     getSelectedFolder: (state) => {
       return state.folders.find(folder => folder.id === state.selectedFolderId);
     },
@@ -111,28 +103,35 @@ export const useFolderStore = defineStore('folder', {
    
 
     
-    async addFolder(folderData) {
+   async addFolder(folderData) {
       this.foldersLoading = true;
       this.foldersError = null;
       try {
         const newFolder = await createFolder(folderData);
-        
         this.setSelectedFolder(newFolder.id);
       } catch (error) {
         this.foldersError = error;
         console.error("Fejl i addFolder:", error);
-        throw error; 
+        throw error;
       } finally {
         this.foldersLoading = false;
       }
     },
 
-    
     async updateFolder(folderId, newData) {
+      const userStore = useUserStore();
+      const folder = this.folders.find(f => f.id === folderId);
+
+      
+      if (!userStore.isAdmin && folder?.created_by !== userStore.currentUserId) {
+        this.foldersError = "Du har ikke rettigheder til at opdatere denne mappe.";
+        return;
+      }
+
       this.foldersLoading = true;
       this.foldersError = null;
       try {
-        await updateFolder(folderId, newData);
+        await updateFolderService(folderId, newData);
       } catch (error) {
         this.foldersError = error;
         console.error("Fejl i updateFolder:", error);
@@ -142,13 +141,20 @@ export const useFolderStore = defineStore('folder', {
       }
     },
 
-    
     async deleteFolder(folderId) {
+      const userStore = useUserStore();
+      const folder = this.folders.find(f => f.id === folderId);
+
+      
+      if (!userStore.isAdmin && folder?.created_by !== userStore.currentUserId) {
+        this.foldersError = "Du har ikke rettigheder til at slette denne mappe.";
+        return;
+      }
+
       this.foldersLoading = true;
       this.foldersError = null;
       try {
-        await deleteFolder(folderId);
-        
+        await deleteFolderService(folderId);
       } catch (error) {
         this.foldersError = error;
         console.error("Fejl i deleteFolder:", error);
@@ -158,13 +164,11 @@ export const useFolderStore = defineStore('folder', {
       }
     },
 
-    
     async addFileToFolder(folderId, fileData) {
       this.filesLoading = true;
       this.filesError = null;
       try {
         await createFileInFolder(folderId, fileData);
-        
       } catch (error) {
         this.filesError = error;
         console.error("Fejl i addFileToFolder:", error);
@@ -174,12 +178,20 @@ export const useFolderStore = defineStore('folder', {
       }
     },
 
-    
     async updateFileInFolder(folderId, fileId, newData) {
+      const userStore = useUserStore();
+      const file = this.filesInSelectedFolder.find(f => f.id === fileId);
+
+      
+      if (!userStore.isAdmin && file?.created_by !== userStore.currentUserId) {
+        this.filesError = "Du har ikke rettigheder til at opdatere denne fil.";
+        return;
+      }
+
       this.filesLoading = true;
       this.filesError = null;
       try {
-        await updateFileInFolder(folderId, fileId, newData);
+        await updateFileInFolderService(folderId, fileId, newData);
       } catch (error) {
         this.filesError = error;
         console.error("Fejl i updateFileInFolder:", error);
@@ -189,32 +201,26 @@ export const useFolderStore = defineStore('folder', {
       }
     },
 
-    
     async deleteFileInFolder(folderId, fileId) {
+      const userStore = useUserStore();
+      const file = this.filesInSelectedFolder.find(f => f.id === fileId);
+
+      
+      if (!userStore.isAdmin && file?.created_by !== userStore.currentUserId) {
+        this.filesError = "Du har ikke rettigheder til at slette denne fil.";
+        return;
+      }
+
       this.filesLoading = true;
       this.filesError = null;
       try {
-        await deleteFileInFolder(folderId, fileId);
+        await deleteFileInFolderService(folderId, fileId);
       } catch (error) {
         this.filesError = error;
         console.error("Fejl i deleteFileInFolder:", error);
         throw error;
       } finally {
         this.filesLoading = false;
-      }
-    },
-
-    
-    clearAllListeners() {
-      if (this._unsubscribeFolders) {
-        this._unsubscribeFolders();
-        this._unsubscribeFolders = null;
-        console.log("Firestore folder listener unsubscribed.");
-      }
-      if (this._unsubscribeFiles) {
-        this._unsubscribeFiles();
-        this._unsubscribeFiles = null;
-        console.log("Firestore files listener unsubscribed.");
       }
     },
   },
